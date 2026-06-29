@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Project 50 · 50天重启人生</title>
+<meta name="description" content="50天自律挑战，重启你的人生习惯">
+<meta name="theme-color" content="#F472B6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Project 50">
+
+<!-- PWA Manifest（内嵌，无需单独文件）-->
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Project%2050%20%C2%B7%2050%E5%A4%A9%E9%87%8D%E5%90%AF%E4%BA%BA%E7%94%9F%22%2C%22short_name%22%3A%22Project50%22%2C%22description%22%3A%2250%E5%A4%A9%E8%87%AA%E5%BE%8B%E6%8C%91%E6%88%98%EF%BC%8C%E9%87%8D%E5%90%AF%E4%BD%A0%E7%9A%84%E4%BA%BA%E7%94%9F%E4%B9%A0%E6%83%AF%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22theme_color%22%3A%22%23F472B6%22%2C%22background_color%22%3A%22%23FFF5F8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTkyIDE5MiI%2BPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iOTYiIGZpbGw9IiNGNDcyQjYiLz48Y2lyY2xlIGN4PSI5NiIgY3k9Ijk2IiByPSI3MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtZGFzaGFycmF5PSI0MDAgNTEyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48dGV4dCB4PSI5NiIgeT0iMTEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjYwIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI%2BNTA8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+
+<!-- Apple Touch Icon（内嵌 SVG）-->
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjRjQ3MkI2Ii8+PGNpcmNsZSBjeD0iOTAiIGN5PSI5MCIgcj0iNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iMzIwIDQwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iOTAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI1MiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjUwPC90ZXh0Pjwvc3ZnPg==">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%23F472B6'/><text x='32' y='44' text-anchor='middle' font-size='28' font-weight='900' fill='white' font-family='sans-serif'>50</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#FFF5F8}
+:root{--pink:#F472B6;--pink-light:#FCE7F3;--pink-mid:#F9A8D4;--yellow:#FCD34D;--green:#34D399;--red:#F87171;--bg:#FFF5F8;--card:#FFFFFF;--text:#1F1535;--muted:#9CA3AF;--border:#F3E8F0;}
+#app{width:100%;max-width:420px;margin:0 auto;background:var(--bg);height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+/* 每个顶层tab页面 */
+.tab-page{display:none;flex-direction:column;flex:1;overflow:hidden}
+.tab-page.active{display:flex}
+
+/* ── QUIZ / RESULT / SETUP (非tab，用screen逻辑) ── */
+.screen{display:none;flex-direction:column;flex:1;overflow-y:auto}
+.screen.active{display:flex}
+#quiz-screen{background:#FFF5F8}
+.quiz-inner{padding:24px 20px;display:flex;flex-direction:column;min-height:100%}
+.quiz-title{font-size:22px;font-weight:700;color:var(--text);text-align:center}
+.quiz-sub{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
+.quiz-skip-bar{display:flex;justify-content:center;margin:16px 0}
+.btn-skip{padding:8px 20px;border:1.5px solid var(--border);border-radius:20px;background:var(--card);font-size:13px;color:var(--muted);cursor:pointer}
+.q-prog-bar{height:4px;background:#F3E8F0;border-radius:4px;margin-bottom:24px;overflow:hidden}
+.q-prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--pink-mid));border-radius:4px;transition:width 0.4s}
+.quiz-sec-lbl{font-size:11px;font-weight:600;color:var(--pink);letter-spacing:1px;margin-bottom:8px}
+.quiz-q{font-size:16px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:16px}
+.quiz-note{font-size:11px;color:var(--red);margin-bottom:16px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);font-size:14px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:10px;transition:all 0.15s}
+.q-opt.sel{border-color:var(--pink);background:var(--pink-light);font-weight:600}
+.q-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--pink-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.q-opt.sel .q-dot{background:var(--pink);border-color:var(--pink)}
+.q-opt.sel .q-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.quiz-nav{display:flex;gap:12px;margin-top:auto;padding-top:24px}
+.btn-prev{flex:1;padding:14px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);font-size:15px;color:var(--muted);cursor:pointer}
+.btn-next{flex:2;padding:14px;border:none;border-radius:12px;background:var(--pink);font-size:15px;font-weight:600;color:#fff;cursor:pointer}
+.btn-next:disabled{background:#F3E8F0;color:var(--muted)}
+
+#result-screen{background:#FFF5F8;align-items:center;justify-content:center;text-align:center;padding:32px 24px}
+.r-emoji{font-size:64px;margin:20px 0}
+.r-score{font-size:56px;font-weight:800;color:var(--pink)}
+.r-label{font-size:20px;font-weight:700;color:var(--text);margin:8px 0}
+.r-desc{font-size:14px;color:var(--muted);line-height:1.6;max-width:280px;margin-bottom:32px}
+.btn-start-challenge{width:100%;max-width:280px;padding:16px;border:none;border-radius:14px;background:var(--pink);font-size:16px;font-weight:700;color:#fff;cursor:pointer}
+
+#setup-screen{background:#FFF5F8}
+.setup-inner{padding:24px 20px}
+.setup-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px}
+.setup-sub{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.s-sec{margin-bottom:24px}
+.s-lbl{font-size:12px;font-weight:600;color:var(--pink);letter-spacing:0.5px;margin-bottom:10px}
+.s-opts{display:flex;flex-direction:column;gap:6px}
+.s-opt{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);font-size:13px;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.15s}
+.s-opt.sel{border-color:var(--pink);background:var(--pink-light);font-weight:600}
+.s-chk{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.s-opt.sel .s-chk{background:var(--pink);border-color:var(--pink);color:#fff}
+.diff-row{display:flex;gap:8px}
+.d-opt{flex:1;padding:10px 8px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);text-align:center;cursor:pointer;transition:all 0.15s}
+.d-opt.sel{border-color:var(--pink);background:var(--pink-light)}
+.d-name{font-size:13px;font-weight:600;color:var(--text)}
+.d-hint{font-size:10px;color:var(--muted);margin-top:2px}
+.btn-launch{width:100%;padding:16px;border:none;border-radius:14px;background:var(--pink);font-size:16px;font-weight:700;color:#fff;cursor:pointer;margin-top:8px}
+.btn-launch:disabled{background:#F3E8F0;color:var(--muted)}
+
+/* ── HOME TAB ── */
+#tab-home{background:var(--bg);overflow-y:auto}
+.home-header{padding:20px 20px 12px;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0}
+.day-badge{font-size:28px;font-weight:800;color:var(--pink);letter-spacing:-1px}
+.day-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.fail-pill{background:#FFF;border:1.5px solid var(--border);border-radius:10px;padding:6px 12px;text-align:right;cursor:pointer}
+.fail-num{font-size:18px;font-weight:700;color:var(--red)}
+.fail-lbl{font-size:10px;color:var(--muted)}
+.prog-area{padding:0 20px 12px}
+.prog-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.prog-title{font-size:12px;font-weight:600;color:var(--muted)}
+.prog-pct{font-size:13px;font-weight:700;color:var(--pink)}
+.prog-track{height:14px;background:var(--border);border-radius:20px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),#fb7bc7);border-radius:20px;transition:width 0.6s cubic-bezier(.4,0,.2,1)}
+.prog-labels{display:flex;justify-content:space-between;margin-top:6px}
+.prog-lbl{font-size:11px;color:var(--muted)}
+.motto{font-size:12px;color:var(--pink);text-align:center;font-weight:500;margin:6px 20px 0;min-height:18px;transition:opacity 0.5s}
+.ch-area{padding:12px 16px 0}
+.ch-card{background:var(--card);border-radius:14px;border:1.5px solid var(--border);margin-bottom:10px;overflow:hidden}
+.ch-head{padding:14px 16px 10px;display:flex;justify-content:space-between;align-items:flex-start}
+.ch-name{font-size:14px;font-weight:700;color:var(--text)}
+.ch-target{font-size:12px;color:var(--muted);margin-top:2px}
+.ch-actions{display:flex;gap:8px;padding:0 16px 14px;flex-wrap:wrap}
+.btn-ck{flex:1;min-width:100px;padding:10px;border:none;border-radius:10px;background:var(--pink);font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:all 0.2s}
+.btn-ck.done{background:#E9FBF4;color:#059669;border:1.5px solid #A7F3D0}
+.btn-ck.failed{background:#FEF2F2;color:var(--red);border:1.5px solid #FECACA;cursor:default}
+.btn-undo{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.btn-timer{padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.btn-timer.running{background:#FFF5F8;border-color:var(--pink);color:var(--pink)}
+.timer-row{display:flex;align-items:center;gap:8px;padding:8px 16px;background:#FFF5F8;border-top:1px solid var(--border)}
+.tmr-done{padding:6px 14px;border:1.5px solid var(--pink);border-radius:8px;background:transparent;font-size:12px;color:var(--pink);font-weight:600;cursor:pointer}
+.tmr-track{flex:1;height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+.tmr-fill{height:100%;background:var(--pink);border-radius:4px;transition:width 1s linear}
+.tmr-time{font-size:12px;color:var(--pink);font-weight:700;min-width:36px;text-align:right}
+.wake-hint{font-size:11px;color:var(--muted);padding:0 16px 10px}
+.wake-hint.expired{color:var(--red)}
+/* 今日进度环 */
+.today-ring-row{display:flex;align-items:center;gap:14px;padding:10px 20px 0}
+.ring-wrap{position:relative;width:56px;height:56px;flex-shrink:0}
+.ring-wrap svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--border);stroke-width:5}
+.ring-fg{fill:none;stroke:var(--pink);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 0.5s ease}
+.ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-n{font-size:15px;font-weight:800;color:var(--pink);line-height:1}
+.ring-d{font-size:9px;color:var(--muted);line-height:1;margin-top:1px}
+.ring-text-col{flex:1}
+.ring-title{font-size:13px;font-weight:700;color:var(--text)}
+.ring-sub{font-size:11px;color:var(--muted);margin-top:2px}
+/* 失败预警横幅 */
+.warn-banner{display:none;margin:8px 16px 0;background:#FFF3CD;border:1.5px solid #FDE68A;border-radius:12px;padding:10px 14px;align-items:center;gap:10px}
+.warn-banner.show{display:flex}
+.warn-banner-text{font-size:12px;color:#92400E;line-height:1.5;flex:1}
+.warn-banner-title{font-weight:700;font-size:13px;color:#B45309}
+/* 底部功能区 */
+.home-footer{padding:16px 20px 20px;display:flex;flex-direction:column;gap:10px}
+.footer-divider{height:1px;background:var(--border);margin:4px 0}
+.footer-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{flex:1;min-width:60px;padding:11px 6px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);font-size:13px;font-weight:600;color:var(--text);cursor:pointer;text-align:center}
+.btn.danger{background:#FEF2F2;border-color:#FECACA;color:var(--red)}
+.footer-feedback{font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+.footer-feedback a{color:var(--pink);text-decoration:none}
+/* 挑战七字数提示 */
+.ch-diary-hint{font-size:11px;color:var(--muted);padding:0 16px 10px}
+
+/* ── DIARY TAB ── */
+#tab-diary{background:var(--bg);overflow:hidden}
+.page-header{padding:20px 20px 12px;flex-shrink:0;border-bottom:1px solid var(--border);background:var(--card)}
+.page-title{font-size:20px;font-weight:700;color:var(--text)}
+.diary-scroll{flex:1;overflow-y:auto}
+.diary-list-inner{padding:12px 16px}
+.diary-empty{text-align:center;padding:48px 20px;color:var(--muted);font-size:14px;line-height:1.8}
+.diary-entry{margin-bottom:14px;padding:14px;background:var(--card);border-radius:14px;border:1.5px solid var(--border)}
+.diary-date{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:6px}
+.diary-text{font-size:14px;color:var(--text);line-height:1.7;white-space:pre-wrap}
+.diary-imgs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.diary-img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--border);cursor:pointer}
+.diary-write-bar{flex-shrink:0;border-top:1px solid var(--border);background:var(--card);padding:12px 16px}
+.diary-ta{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px;font-size:14px;resize:none;height:72px;color:var(--text);background:var(--bg);font-family:inherit;outline:none}
+.diary-ta:focus{border-color:var(--pink)}
+.img-preview-area{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 0}
+.img-preview{position:relative;width:64px;height:64px}
+.img-preview img{width:100%;height:100%;object-fit:cover;border-radius:8px;border:1px solid var(--border)}
+.img-del{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--red);color:#fff;border:none;border-radius:50%;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.diary-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
+.diary-count{font-size:12px;color:var(--muted)}
+.diary-count.ok{color:var(--green)}
+.diary-actions{display:flex;gap:8px;align-items:center}
+.btn-img-upload{padding:8px 12px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.btn-diary-save{padding:10px 18px;border:none;border-radius:10px;background:var(--pink);font-size:13px;font-weight:600;color:#fff;cursor:pointer}
+.btn-diary-save:disabled{background:#F3E8F0;color:var(--muted)}
+
+/* ── CALENDAR TAB ── */
+#tab-cal{background:var(--bg);overflow-y:auto}
+.cal-inner{padding:16px}
+.fail-strip{display:flex;align-items:center;justify-content:space-between;background:#FEF2F2;border-radius:10px;padding:10px 14px;margin-bottom:12px;cursor:pointer}
+.fail-strip-txt{font-size:13px;color:var(--red);font-weight:600}
+.fail-strip-sub{font-size:11px;color:var(--red);opacity:0.7}
+.cal-month{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;text-align:center}
+.cal-wdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:8px}
+.cal-wd{font-size:11px;color:var(--muted);font-weight:600;padding:4px 0}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-d{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;font-size:12px;color:var(--muted)}
+.cal-d.active{background:var(--card);border:1px solid var(--border);color:var(--text)}
+.cal-d.today{border-color:var(--pink);color:var(--pink);font-weight:700}
+.cal-icon{font-size:13px;line-height:1}
+.cal-dn{font-size:10px;line-height:1}
+.cal-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.st-card{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:14px;text-align:center}
+.st-num{font-size:26px;font-weight:800;color:var(--pink)}
+.st-lbl{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{display:flex;background:var(--card);border-top:1px solid var(--border);padding:8px 0 max(4px,env(safe-area-inset-bottom));flex-shrink:0}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 4px;border:none;background:none}
+.nav-ico{font-size:22px;transition:transform 0.2s}
+.nav-lbl{font-size:10px;color:var(--muted);font-weight:500}
+.nav-btn.active .nav-lbl{color:var(--pink)}
+.nav-btn.active .nav-ico{transform:scale(1.15)}
+
+/* ── MODAL / OVERLAY ── */
+.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:1000}
+.modal-box{background:var(--card);border-radius:20px;padding:24px 20px;width:300px;max-width:88vw}
+.modal-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px;text-align:center}
+.modal-sub{font-size:13px;color:var(--muted);text-align:center;line-height:1.7;margin-bottom:20px;white-space:pre-line}
+.modal-btn{width:100%;padding:14px;border:none;border-radius:12px;background:var(--pink);font-size:15px;font-weight:600;color:#fff;cursor:pointer;margin-bottom:8px}
+.modal-btn.danger{background:var(--red)}
+.modal-sec{width:100%;padding:14px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);font-size:15px;color:var(--muted);cursor:pointer}
+.lightbox{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:2000}
+.lightbox img{max-width:94vw;max-height:88vh;border-radius:10px}
+.hidden{display:none!important}
+.toast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:#1F1535;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;z-index:3000;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+/* 庆祝页 */
+#celebrate-screen{background:linear-gradient(160deg,#FFF0F8 0%,#FCE7F3 100%);align-items:center;justify-content:flex-start;text-align:center;overflow-y:auto;padding:0}
+.celebrate-inner{padding:36px 24px 32px;display:flex;flex-direction:column;align-items:center;width:100%}
+.celebrate-confetti{font-size:56px;animation:bounce 1s infinite alternate}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.celebrate-title{font-size:26px;font-weight:800;color:var(--pink);margin:16px 0 6px;letter-spacing:-0.5px}
+.celebrate-sub{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:28px}
+.celebrate-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-bottom:28px}
+.cel-stat{background:var(--card);border-radius:16px;padding:18px 12px;border:1.5px solid var(--border)}
+.cel-stat-num{font-size:28px;font-weight:800;color:var(--pink)}
+.cel-stat-lbl{font-size:11px;color:var(--muted);margin-top:4px}
+/* 分享卡片 */
+.share-card-wrap{width:100%;background:var(--card);border-radius:20px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:20px}
+.share-card{padding:24px 20px;background:linear-gradient(135deg,#FFF0F8,#FCE7F3);display:flex;flex-direction:column;align-items:center;gap:10px}
+.share-card-title{font-size:18px;font-weight:800;color:var(--pink)}
+.share-card-day{font-size:48px;font-weight:900;color:var(--text);letter-spacing:-2px;line-height:1}
+.share-card-sub{font-size:13px;color:var(--muted)}
+.share-card-stats{display:flex;gap:20px;margin-top:4px}
+.share-stat{text-align:center}
+.share-stat-n{font-size:20px;font-weight:800;color:var(--pink)}
+.share-stat-l{font-size:10px;color:var(--muted)}
+.share-card-brand{font-size:11px;color:var(--pink-mid);margin-top:6px;font-weight:600}
+.share-btns{display:flex;gap:10px;padding:14px 16px;background:var(--card)}
+.btn-share-copy{flex:1;padding:12px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg);font-size:13px;font-weight:600;color:var(--text);cursor:pointer}
+.btn-share-img{flex:1;padding:12px;border:none;border-radius:12px;background:var(--pink);font-size:13px;font-weight:600;color:#fff;cursor:pointer}
+.btn-celebrate-home{width:100%;max-width:280px;padding:16px;border:none;border-radius:14px;background:var(--pink);font-size:16px;font-weight:700;color:#fff;cursor:pointer}
+/* ── Splash 启动页 ── */
+#splash{position:fixed;inset:0;background:#FFF5F8;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.4s ease}
+#splash.hide{opacity:0;pointer-events:none}
+.splash-logo{width:96px;height:96px;animation:splashIn 0.6s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes splashIn{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+.splash-title{font-size:24px;font-weight:800;color:var(--text);margin-top:20px;letter-spacing:-0.5px}
+.splash-sub{font-size:13px;color:var(--muted);margin-top:8px;text-align:center;line-height:1.6;max-width:220px}
+.splash-day{font-size:13px;color:var(--pink);font-weight:600;margin-top:6px}
+.splash-dot{width:6px;height:6px;border-radius:50%;background:var(--pink-mid);margin-top:28px;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
+/* ── 安装引导 ── */
+#install-banner{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);border-radius:20px 20px 0 0;padding:20px 20px 32px;z-index:3000;transform:translateY(100%);transition:transform 0.35s cubic-bezier(.4,0,.2,1);box-shadow:0 -4px 24px rgba(0,0,0,0.08)}
+#install-banner.show{transform:translateY(0)}
+.install-row{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.install-icon{width:52px;height:52px;border-radius:14px;flex-shrink:0}
+.install-title{font-size:16px;font-weight:700;color:var(--text)}
+.install-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
+.install-steps{background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:var(--text);line-height:1.8}
+.install-btns{display:flex;gap:10px}
+.btn-install{flex:2;padding:13px;border:none;border-radius:12px;background:var(--pink);font-size:14px;font-weight:700;color:#fff;cursor:pointer}
+.btn-install-later{flex:1;padding:13px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);font-size:14px;color:var(--muted);cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- ── Splash 启动页 ── -->
+<div id="splash">
+  <svg class="splash-logo" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="48" cy="48" r="48" fill="#F472B6"/>
+    <circle cx="48" cy="48" r="34" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="6"/>
+    <circle cx="48" cy="48" r="34" fill="none" stroke="#fff" stroke-width="6"
+      stroke-dasharray="160 214" stroke-linecap="round" stroke-dashoffset="0"/>
+    <text x="48" y="57" text-anchor="middle" font-size="26" font-weight="900"
+      fill="#fff" font-family="-apple-system,sans-serif">50</text>
+  </svg>
+  <div class="splash-title">Project 50</div>
+  <div class="splash-sub" id="splash-sub">50天重启人生挑战</div>
+  <div class="splash-day" id="splash-day"></div>
+  <div class="splash-dot"></div>
+</div>
+
+<!-- ── 安装引导 ── -->
+<div id="install-banner">
+  <div class="install-row">
+    <svg class="install-icon" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+      <rect width="52" height="52" rx="14" fill="#F472B6"/>
+      <circle cx="26" cy="26" r="16" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="4"/>
+      <text x="26" y="32" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="sans-serif">50</text>
+    </svg>
+    <div>
+      <div class="install-title">安装 Project 50</div>
+      <div class="install-sub" id="install-sub">添加到主屏幕，像 App 一样使用</div>
+    </div>
+  </div>
+  <div class="install-steps" id="install-steps"></div>
+  <div class="install-btns">
+    <button class="btn-install" id="install-confirm-btn">立即安装</button>
+    <button class="btn-install-later" onclick="dismissInstall()">以后再说</button>
+  </div>
+</div>
+
+<div id="app">
+
+<!-- ── QUIZ / RESULT / SETUP (全屏，非tab) ── -->
+<div id="quiz-screen" class="screen">
+  <div class="quiz-inner">
+    <div class="quiz-title">🌸 50天重启人生</div>
+    <div class="quiz-sub">18题自测，了解你目前的生活状态</div>
+    <div class="quiz-skip-bar">
+      <button class="btn-skip" onclick="skipQuiz()">跳过测试，直接开始挑战 →</button>
+    </div>
+    <div class="q-prog-bar"><div class="q-prog-fill" id="qprog" style="width:5.5%"></div></div>
+    <div id="q-sec" class="quiz-sec-lbl"></div>
+    <div id="q-text" class="quiz-q"></div>
+    <div id="q-note" class="quiz-note hidden">（此题反向计分）</div>
+    <div class="quiz-opts" id="q-opts"></div>
+    <div class="quiz-nav">
+      <button class="btn-prev" id="qprev" onclick="quizPrev()">上一题</button>
+      <button class="btn-next" id="qnext" onclick="quizNext()" disabled>下一题</button>
+    </div>
+  </div>
+</div>
+
+<div id="result-screen" class="screen">
+  <div id="r-emoji" class="r-emoji">🌱</div>
+  <div class="r-score" id="r-score">0</div>
+  <div style="font-size:13px;color:var(--muted);margin-bottom:12px">/ 72 分</div>
+  <div class="r-label" id="r-label"></div>
+  <div class="r-desc" id="r-desc"></div>
+  <button class="btn-start-challenge" onclick="goSetup()">开始我的50天挑战 →</button>
+  <button style="margin-top:12px;padding:10px 20px;border:none;background:none;font-size:13px;color:var(--muted);cursor:pointer" onclick="retakeQuiz()">重新测试</button>
+</div>
+
+<div id="setup-screen" class="screen">
+  <div class="setup-inner">
+    <div class="setup-title">🎯 自定义你的挑战</div>
+    <div class="setup-sub">选择每项挑战的强度，持续的微小改变胜过偶尔的极限冲刺</div>
+    <div id="setup-container"></div>
+    <div class="s-sec">
+      <div class="s-lbl">整体难度</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">累计未完成次数超过上限则本次挑战失败</div>
+      <div class="diff-row">
+        <div class="d-opt" data-diff="easy" onclick="selDiff('easy')"><div class="d-name">简单</div><div class="d-hint">可放弃50次</div></div>
+        <div class="d-opt sel" data-diff="medium" onclick="selDiff('medium')"><div class="d-name">适中</div><div class="d-hint">可放弃30次</div></div>
+        <div class="d-opt" data-diff="hard" onclick="selDiff('hard')"><div class="d-name">困难</div><div class="d-hint">可放弃10次</div></div>
+      </div>
+    </div>
+    <button class="btn-launch" id="launch-btn" onclick="launchChallenge()" disabled>🚀 开始50天挑战</button>
+    <div style="height:20px"></div>
+  </div>
+</div>
+
+<!-- ── 庆祝完成页 ── -->
+<div id="celebrate-screen" class="screen">
+  <div class="celebrate-inner">
+    <div class="celebrate-confetti">🎉</div>
+    <div class="celebrate-title">挑战圆满完成！</div>
+    <div class="celebrate-sub">你坚持了整整50天<br>这份自律已经改变了你</div>
+    <div class="celebrate-stats" id="cel-stats"></div>
+    <!-- 分享卡片 -->
+    <div class="share-card-wrap">
+      <div class="share-card" id="share-card">
+        <div class="share-card-title">🌸 50天重启人生挑战</div>
+        <div class="share-card-day" id="cel-share-day">50</div>
+        <div class="share-card-sub">天挑战圆满完成 🏆</div>
+        <div class="share-card-stats" id="cel-share-stats"></div>
+        <div class="share-card-brand">Project 50 · 重启人生</div>
+      </div>
+      <div class="share-btns">
+        <button class="btn-share-copy" onclick="copyShareText()">📋 复制文字</button>
+        <button class="btn-share-img" onclick="saveShareCard()">🖼️ 保存图片</button>
+      </div>
+    </div>
+    <button class="btn-celebrate-home" onclick="celebrateToHome()">继续下一个50天 →</button>
+  </div>
+</div>
+
+<!-- ── 主 APP 容器（三tab + 底部导航）── -->
+<div id="main-app" class="hidden" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+
+  <!-- TAB: 主页 -->
+  <div id="tab-home" class="tab-page active">
+    <div class="home-header">
+      <div>
+        <div class="day-badge" id="main-day">DAY 1</div>
+        <div class="day-sub" id="main-date"></div>
+      </div>
+      <div class="fail-pill" onclick="showFailInfo()">
+        <div class="fail-num" id="main-fail">0</div>
+        <div class="fail-lbl">未完成 / <span id="main-limit">30</span></div>
+      </div>
+    </div>
+    <div class="prog-area">
+      <div class="prog-meta">
+        <span class="prog-title">50天挑战进度</span>
+        <span class="prog-pct" id="prog-pct">0%</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="prog-labels">
+        <span class="prog-lbl">第1天</span>
+        <span class="prog-lbl" id="prog-cur"></span>
+        <span class="prog-lbl">第50天</span>
+      </div>
+      <div class="motto" id="main-motto"></div>
+    </div>
+    <!-- 今日进度环 -->
+    <div class="today-ring-row">
+      <div class="ring-wrap">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle class="ring-bg" cx="28" cy="28" r="24"/>
+          <circle class="ring-fg" id="ring-fg" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
+        </svg>
+        <div class="ring-label">
+          <div class="ring-n" id="ring-n">0</div>
+          <div class="ring-d" id="ring-d">/ 0</div>
+        </div>
+      </div>
+      <div class="ring-text-col">
+        <div class="ring-title" id="ring-title">今日尚未开始</div>
+        <div class="ring-sub" id="ring-sub">点击各项挑战开始打卡</div>
+      </div>
+    </div>
+    <!-- 失败预警横幅 -->
+    <div class="warn-banner" id="warn-banner">
+      <span style="font-size:20px">⚠️</span>
+      <div class="warn-banner-text">
+        <div class="warn-banner-title">累计失败次数接近上限！</div>
+        <span id="warn-banner-sub"></span>
+      </div>
+    </div>
+    <div class="ch-area" id="ch-list"></div>
+    <!-- 底部功能区 -->
+    <div class="home-footer">
+      <div class="footer-divider"></div>
+      <div class="footer-row">
+        <button class="btn" onclick="showDailyShare()">📸 分享</button>
+        <button class="btn" onclick="showSettings()">⚙️ 设置</button>
+        <button class="btn danger" onclick="confirmReset()">🔄 重置</button>
+      </div>
+      <input id="import-json" type="file" accept=".json,application/json" style="display:none" onchange="importData(event)">
+      <div class="footer-feedback">
+        如有问题请联系
+        <a href="mailto:1663576204@qq.com">1663576204@qq.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: 挑战日记 -->
+  <div id="tab-diary" class="tab-page">
+    <div class="page-header">
+      <div class="page-title">📓 挑战日记</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px" id="diary-min-hint"></div>
+    </div>
+    <div class="diary-scroll">
+      <div class="diary-list-inner" id="diary-entries"></div>
+    </div>
+    <div class="diary-write-bar">
+      <textarea class="diary-ta" id="diary-input" placeholder="写下今天的感悟、收获或困难..."></textarea>
+      <div class="img-preview-area" id="img-preview-area"></div>
+      <div class="diary-foot">
+        <div class="diary-count" id="diary-char">0 字</div>
+        <div class="diary-actions">
+          <button class="btn-img-upload" onclick="document.getElementById('img-file-input').click()">📷 图片</button>
+          <button class="btn-diary-save" id="diary-save-btn" onclick="saveDiary()" disabled>保存记录</button>
+        </div>
+      </div>
+    </div>
+    <input type="file" id="img-file-input" accept="image/*" multiple style="display:none" onchange="handleImgUpload(event)">
+  </div>
+
+  <!-- TAB: 挑战日历 -->
+  <div id="tab-cal" class="tab-page">
+    <div class="page-header">
+      <div class="page-title">📅 挑战日历</div>
+    </div>
+    <div class="cal-inner">
+      <div class="fail-strip" onclick="showFailInfo()">
+        <div>
+          <div class="fail-strip-txt">💩 累计未完成 <span id="cal-fail-cnt">0</span> 次</div>
+          <div class="fail-strip-sub">点击查看详情</div>
+        </div>
+        <div style="font-size:20px">→</div>
+      </div>
+      <div class="cal-month" id="cal-month"></div>
+      <div class="cal-wdays">
+        <div class="cal-wd">日</div><div class="cal-wd">一</div><div class="cal-wd">二</div>
+        <div class="cal-wd">三</div><div class="cal-wd">四</div><div class="cal-wd">五</div><div class="cal-wd">六</div>
+      </div>
+      <div class="cal-days" id="cal-days"></div>
+      <div class="cal-stats">
+        <div class="st-card"><div class="st-num" id="stat-done">0</div><div class="st-lbl">🐕 完整完成天数</div></div>
+        <div class="st-card"><div class="st-num" id="stat-streak">0</div><div class="st-lbl">🔥 当前连续天数</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部导航 -->
+  <div class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="switchTab('home')">
+      <span class="nav-ico">🏠</span><span class="nav-lbl">主页</span>
+    </button>
+    <button class="nav-btn" id="nav-diary" onclick="switchTab('diary')">
+      <span class="nav-ico">📓</span><span class="nav-lbl">挑战日记</span>
+    </button>
+    <button class="nav-btn" id="nav-cal" onclick="switchTab('cal')">
+      <span class="nav-ico">📅</span><span class="nav-lbl">挑战日历</span>
+    </button>
+  </div>
+</div>
+
+<!-- MODAL (通用) -->
+<div class="overlay hidden" id="modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-sub"></div>
+    <button class="modal-btn" id="modal-btn1"></button>
+    <button class="modal-sec" id="modal-btn2" onclick="closeModal()">取消</button>
+  </div>
+</div>
+
+<!-- 每日打卡分享卡片弹窗 -->
+<div class="overlay hidden" id="share-modal">
+  <div class="modal-box" style="max-width:92vw;width:340px;padding:0;overflow:hidden">
+    <canvas id="daily-share-canvas" width="680" height="480" style="width:100%;display:block;border-radius:20px 20px 0 0"></canvas>
+    <div style="padding:14px 16px;display:flex;gap:10px;background:var(--card)">
+      <button style="flex:1;padding:11px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-size:13px;font-weight:600;color:var(--text);cursor:pointer" onclick="copyDailyShareText()">📋 复制文字</button>
+      <button style="flex:1;padding:11px;border:none;border-radius:10px;background:var(--pink);font-size:13px;font-weight:600;color:#fff;cursor:pointer" onclick="saveDailyShareImg()">🖼️ 保存图片</button>
+    </div>
+    <div style="padding:0 16px 14px;background:var(--card)">
+      <button style="width:100%;padding:11px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-size:13px;color:var(--muted);cursor:pointer" onclick="document.getElementById('share-modal').classList.add('hidden')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox hidden" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script>
+// =====================================================
+// Module: Config
+// Purpose: 挑战定义、激励语、测试题目常量
+// =====================================================
+
+const CHALLENGES_DEF=[
+  {id:'wake',   name:'挑战一：早起',     opts:['早上8点前起床','早上9点前起床','早上10点前起床'], wakeHours:[8,9,10], isWake:true},
+  {id:'morning',name:'挑战二：晨起仪式', desc:'晨起补水、整理卧室、冥想、阅读、拉伸、无屏幕早餐等', opts:['15分钟晨起仪式','30分钟晨起仪式','1小时晨起仪式'], durations:[15,30,60], hasTimer:true},
+  {id:'exercise',name:'挑战三：运动',   opts:['30分钟运动','1小时运动','1.5小时运动'], durations:[30,60,90], hasTimer:true},
+  {id:'read',   name:'挑战四：阅读',     opts:['10分钟阅读','20分钟阅读','30分钟阅读'], durations:[10,20,30], hasTimer:true},
+  {id:'skill',  name:'挑战五：新技能',   opts:['20分钟学习新技能','40分钟学习新技能','1小时学习新技能'], durations:[20,40,60], hasTimer:true},
+  {id:'diet',   name:'挑战六：健康饮食', opts:['一餐健康饮食','两餐健康饮食','三餐健康饮食']},
+  {id:'record', name:'挑战七：记录',     opts:['50字以上','100字以上','200字以上'], minChars:[50,100,200], isDiary:true},
+];
+
+const MOTTOS=['不积跬步，无以至千里','锲而不舍，金石可镂','千淘万漉虽辛苦，吹尽狂沙始到金','铢积寸累，日就月将','合抱之木，生于毫末','沉舟侧畔千帆过，病树前头万木春','莫道桑榆晚，为霞尚满天','长风破浪会有时，直挂云帆济沧海','山重水复疑无路，柳暗花明又一村','非淡泊无以明志，非宁静无以致远','腹有诗书气自华','天行健，君子以自强不息','千磨万击还坚劲，任尔东西南北风','苔花如米小，也学牡丹开','自能成羽翼，何必仰云梯','慎终如始，则无败事','有志者，事竟成','一分耕耘，一分收获','水滴石穿，绳锯木断','功夫不负有心人','日日行，不怕千万里；常常做，不怕千万事'];
+
+const QUIZ_Q=[
+  {q:'你能在固定时间（早上8点左右）起床，不依赖手机闹钟或社会压力？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'作息规律'},
+  {q:'睡前刷手机超过30分钟，导致晚睡是你的常态？',opts:['从不','很少','有时','经常','非常频繁'],rev:true,sec:'作息规律'},
+  {q:'你能在开始工作/学习的1小时内保持完全专注，不被手机打断？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'专注力'},
+  {q:'你觉得自己容易陷入无意义的信息流（短视频、社交媒体）而浑然不觉？',opts:['从不','很少','有时','经常','非常频繁'],rev:true,sec:'专注力'},
+  {q:'你目前每周能保证至少3次、每次30分钟以上的有效锻炼？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'运动习惯'},
+  {q:'你会因为「太忙」「太累」「明天再说」而持续取消运动计划？',opts:['从不','很少','有时','经常','非常频繁'],rev:true,sec:'运动习惯'},
+  {q:'你有在坚持阅读书籍（不包括文章/短内容），每天哪怕只读几页？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'学习成长'},
+  {q:'你正在主动学习或练习一项能提升自己的技能（编程、外语、乐器等）？',opts:['完全不符合','不太符合','一般般','比较符合','完全符合'],rev:false,sec:'学习成长'},
+  {q:'你的日常饮食以蔬菜、蛋白质为主，较少摄入外卖/垃圾食品？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'饮食健康'},
+  {q:'你会因为情绪（压力、无聊、难过）而吃东西，或者用食物奖励自己？',opts:['从不','很少','有时','经常','非常频繁'],rev:true,sec:'饮食健康'},
+  {q:'你有写日记、记录或复盘当天收获与情绪的习惯？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'反思复盘'},
+  {q:'你能清晰说出上周自己做了哪些有意义的事，以及从中学到了什么？',opts:['完全不符合','不太符合','一般般','比较符合','完全符合'],rev:false,sec:'反思复盘'},
+  {q:'你目前有明确的、写下来的人生目标或阶段性目标？',opts:['完全不符合','不太符合','一般般','比较符合','完全符合'],rev:false,sec:'目标感'},
+  {q:'你是否经常感到「每天都很忙，但不知道在忙什么」？',opts:['从不','很少','有时','经常','非常频繁'],rev:true,sec:'目标感'},
+  {q:'你对现在的生活状态感到满意和充实？',opts:['很差','较差','一般','较好','很好'],rev:false,sec:'心理状态'},
+  {q:'你是否觉得自己一直想改变，却总找不到动力和切入点？',opts:['从不','很少','有时','经常','非常频繁'],rev:true,sec:'心理状态'},
+  {q:'当你对自己做出某个承诺（比如早起、戒糖、少刷手机），你能坚持超过7天？',opts:['从不','偶尔','有时','经常','总是'],rev:false,sec:'自律能力'},
+  {q:'你对「50天挑战」这类结构性计划感兴趣，愿意认真尝试？',opts:['完全不符合','不太符合','一般般','比较符合','完全符合'],rev:false,sec:'自律能力'},
+];
+
+// =====================================================
+// Module: State
+// Purpose: 全局状态变量声明
+// =====================================================
+
+const STATE_VERSION=3;
+
+let state={
+  phase:'quiz',quizAnswers:[],challenges:{},difficulty:'medium',
+  startDate:null,dayData:{},diaryData:{},totalFails:0,mottoIdx:0,
+  lastTab:'home',       // 记住最后浏览的页面
+  lastBackupTime:0,     // 最近自动备份时间戳
+  version:STATE_VERSION // state 版本号，用于迁移
+};
+let timers={};          // 各挑战计时器对象
+let mottoTimer=null;    // 激励语轮播 interval
+let wakeTimer=null;     // pollWake interval（防重复创建）
+let midnightTimer=null; // 跨天检测 interval
+let pendingImgs=[];     // 日记待保存图片（base64数组）
+let diaryDraftTimer=null; // 日记自动草稿计时器
+let quizCur=0;          // 当前题目索引
+let saving=false;       // 防重复点击锁
+let lastDate=null;      // 跨天检测用
+
+// =====================================================
+// Module: Storage
+// Purpose: 数据持久化，双备份，旧版本迁移，自动快照
+// Depends: State
+// =====================================================
+
+const BUILD_NAME='17.0';
+
+// state 版本迁移——每次新增字段都在这里补默认值，老用户数据自动升级
+function migrateState(data){
+  if(!data)return data;
+  data.version    = data.version    ?? STATE_VERSION;
+  data.lastTab    = data.lastTab    ?? 'home';
+  data.lastBackupTime = data.lastBackupTime ?? 0;
+  data.mottoIdx   = data.mottoIdx   ?? 0;
+  data.totalFails = data.totalFails ?? 0;
+  data.dayData    = data.dayData    ?? {};
+  data.diaryData  = data.diaryData  ?? {};
+  data.quizAnswers= data.quizAnswers?? [];
+  data.challenges = data.challenges ?? {};
+  return data;
+}
+
+function save(){
+  try{
+    const json=JSON.stringify(state);
+    localStorage.setItem('p50_data',json);
+    localStorage.setItem('p50_data_bak',json);
+    updateAutoBackup(); // 每次保存都同步快照
+  }catch(e){}
+}
+
+function load(){
+  try{
+    let raw=localStorage.getItem('p50_data');
+    if(!raw) raw=localStorage.getItem('p50_data_bak');
+    // 旧版本 key 自动迁移
+    if(!raw){
+      for(const k of['p50_v5','p50_v4','p50_v3','p50_v2','p50']){
+        raw=localStorage.getItem(k);
+        if(raw){localStorage.removeItem(k);break;}
+      }
+    }
+    if(raw) state=migrateState(JSON.parse(raw));
+  }catch(e){}
+}
+
+load();
+
+// =====================================================
+// Module: App Init
+// Purpose: DOMContentLoaded 统一入口，页面路由，后台恢复事件
+// Depends: Storage, State, Quiz, Home, Celebrate, Utils
+// =====================================================
+
+window.addEventListener('DOMContentLoaded',function(){
+
+  // =====================================================
+  // Splash 启动页
+  // =====================================================
+  const SPLASH_TEXTS=[
+    {day:0,  sub:'50天，重启你的人生习惯',    day_txt:''},
+    {day:1,  sub:'今天开始，坚持50天。',       day_txt:'Day 1 · 万事开头难'},
+    {day:7,  sub:'第一周，你做到了！',          day_txt:'Day 7 · 好的开始'},
+    {day:14, sub:'两周了，习惯正在形成。',      day_txt:'Day 14 · 习惯萌芽'},
+    {day:21, sub:'21天，大脑开始接受改变。',   day_txt:'Day 21 · 关键节点'},
+    {day:30, sub:'半程！你比大多数人走得更远。',day_txt:'Day 30 · 半程里程碑'},
+    {day:40, sub:'终点就在眼前，别停下。',      day_txt:'Day 40 · 冲刺阶段'},
+    {day:49, sub:'最后一天，全力以赴！',        day_txt:'Day 49 · 明天就是终点'},
+    {day:50, sub:'你完成了！欢迎来到新的自己。',day_txt:'Day 50 · 圆满完成 🎉'},
+  ];
+  function getSplashText(dayNum){
+    let match=SPLASH_TEXTS[0];
+    for(const t of SPLASH_TEXTS){if(dayNum>=t.day)match=t;}
+    return match;
+  }
+  const splashEl=document.getElementById('splash');
+  const splashSub=document.getElementById('splash-sub');
+  const splashDay=document.getElementById('splash-day');
+  if(state.phase==='main'){
+    const day=getDayNum();
+    const txt=getSplashText(day);
+    if(splashSub)splashSub.textContent=txt.sub;
+    if(splashDay)splashDay.textContent=txt.day_txt;
+  }
+  // Splash 至少显示 800ms，然后淡出
+  const splashStart=Date.now();
+  function hideSplash(){
+    const elapsed=Date.now()-splashStart;
+    const delay=Math.max(0,800-elapsed);
+    setTimeout(()=>{
+      if(splashEl){splashEl.classList.add('hide');setTimeout(()=>splashEl.remove(),450);}
+    },delay);
+  }
+
+  // Safari / 安卓 后台切回时刷新主页数据（修复计时器暂停显示错误）
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='visible'&&state.phase==='main'){
+      const day=getDayNum();
+      document.getElementById('main-day').textContent='DAY '+day;
+      const now=new Date();
+      document.getElementById('main-date').textContent=now.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'short'});
+      renderProgress(day);
+      renderChallenges();
+    }
+    if(document.visibilityState==='hidden'){
+      save();           // 锁屏/切后台时立即保存，防止 Safari 后台被杀丢数据
+      saveDiaryDraft(); // 同时保存日记草稿
+    }
+  });
+
+  // Safari 推荐的页面恢复事件（bfcache 返回时触发）
+  window.addEventListener('pageshow',()=>{
+    if(state.phase==='main'){
+      const day=getDayNum();
+      document.getElementById('main-day').textContent='DAY '+day;
+      renderProgress(day);
+      renderChallenges();
+      if(state.lastTab==='diary') loadDiaryDraft(); // Safari 返回时恢复草稿
+    }
+  });
+
+  // 页面关闭前保存（Chrome / 安卓有效）
+  window.addEventListener('beforeunload',()=>{ save(); });
+
+  // ── 页面路由：根据 state.phase 决定显示哪个页面 ──
+  if(state.phase==='main'){
+    showScreen('');
+    document.getElementById('main-app').classList.remove('hidden');
+    document.getElementById('main-app').style.display='flex';
+    initHome();
+    switchTab(state.lastTab||'home');
+    hideSplash();
+    initInstallPrompt();
+    return;
+  }
+  if(state.phase==='celebrate'){
+    showCelebrate();
+    hideSplash();
+    return;
+  }
+  // 默认：第一次访问，显示测试问卷
+  quizCur=0;
+  renderQuiz();
+  showScreen('quiz-screen');
+  hideSplash();
+  initInstallPrompt();
+});
+
+// =====================================================
+// Module: Utils
+// Purpose: 通用工具函数（日期、格式化、toast、screen切换）
+// =====================================================
+
+function getToday(){return new Date().toISOString().split('T')[0]}
+
+function getDayNum(){
+  if(!state.startDate)return 1;
+  return Math.max(1,Math.min(50,Math.floor((new Date(getToday())-new Date(state.startDate))/86400000)+1));
+}
+
+function getDayOf(date){
+  if(!state.startDate)return 1;
+  return Math.max(1,Math.floor((new Date(date)-new Date(state.startDate))/86400000)+1);
+}
+
+function isFirstDay(){return getDayNum()===1}
+
+function isWakeExpired(wh){
+  if(isFirstDay())return false;
+  const n=new Date();
+  return n>=new Date(n.getFullYear(),n.getMonth(),n.getDate(),wh,1,0);
+}
+
+function fmtTime(s){return Math.floor(s/60)+':'+(s%60).toString().padStart(2,'0')}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));
+  if(id){const el=document.getElementById(id);if(el)el.classList.add('active');}
+}
+
+function copyText(text){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>toast('📋 已复制！'));
+  } else {
+    const ta=document.createElement('textarea');
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    toast('📋 已复制！');
+  }
+}
+
+// =====================================================
+// Module: Quiz
+// Purpose: 前置测试问卷渲染、答题、评分
+// Depends: State, Utils
+// =====================================================
+
+function renderQuiz(){
+  const q=QUIZ_Q[quizCur];
+  document.getElementById('q-sec').textContent=q.sec;
+  document.getElementById('q-text').textContent=(quizCur+1)+'. '+q.q;
+  document.getElementById('q-note').classList.toggle('hidden',!q.rev);
+  const c=document.getElementById('q-opts');c.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const d=document.createElement('div');
+    d.className='q-opt'+(state.quizAnswers[quizCur]===i?' sel':'');
+    d.innerHTML=`<div class="q-dot"></div><span>${o}</span>`;
+    d.onclick=()=>{state.quizAnswers[quizCur]=i;renderQuiz();document.getElementById('qnext').disabled=false;};
+    c.appendChild(d);
+  });
+  document.getElementById('qprog').style.width=((quizCur+1)/18*100)+'%';
+  document.getElementById('qprev').style.opacity=quizCur===0?'0.3':'1';
+  document.getElementById('qnext').textContent=quizCur===17?'查看结果':'下一题';
+  document.getElementById('qnext').disabled=state.quizAnswers[quizCur]===undefined;
+}
+
+function quizNext(){
+  if(state.quizAnswers[quizCur]===undefined)return;
+  if(quizCur===17){showResult();return;}
+  quizCur++;renderQuiz();
+}
+
+function quizPrev(){if(quizCur>0){quizCur--;renderQuiz();}}
+function retakeQuiz(){quizCur=0;state.quizAnswers=[];renderQuiz();showScreen('quiz-screen');}
+function skipQuiz(){goSetup();}
+
+function calcScore(){
+  const rev=[1,3,5,9,13,15];
+  return QUIZ_Q.reduce((t,q,i)=>t+(rev.includes(i)?(4-(state.quizAnswers[i]??0)):(state.quizAnswers[i]??0)),0);
+}
+
+function showResult(){
+  const s=calcScore();
+  document.getElementById('r-score').textContent=s;
+  let label,desc,emoji;
+  if(s>=58){label='✦ 状态良好';desc='你的习惯已经相当不错！把Project 50作为升级挑战，探索更高的自己。';emoji='🌟'}
+  else if(s>=43){label='◈ 有待加强';desc='有一些好习惯，但还有改善空间。建议开启Project 50，系统性提升自己。';emoji='🌱'}
+  else if(s>=29){label='⚡ 需要改变';desc='你感受到了问题，是时候采取行动了。强烈建议开启Project 50！';emoji='💪'}
+  else{label='◎ 是时候重启了';desc='现在就是最好的时机！立刻开启Project 50，用50天重塑生活习惯。';emoji='🔥'}
+  document.getElementById('r-label').textContent=label;
+  document.getElementById('r-desc').textContent=desc;
+  document.getElementById('r-emoji').textContent=emoji;
+  showScreen('result-screen');
+}
+
+// =====================================================
+// Module: Setup
+// Purpose: 挑战自定义配置（选项、难度）
+// Depends: State, Storage, Utils
+// =====================================================
+
+function goSetup(){renderSetup();showScreen('setup-screen');}
+
+function renderSetup(){
+  const c=document.getElementById('setup-container');c.innerHTML='';
+  CHALLENGES_DEF.forEach(ch=>{
+    const sel=state.challenges[ch.id];
+    let html=`<div class="s-sec"><div class="s-lbl">${ch.name}</div>`;
+    if(ch.desc)html+=`<div style="font-size:11px;color:var(--muted);margin-bottom:8px">${ch.desc}</div>`;
+    html+=`<div class="s-opts">`;
+    ch.opts.forEach((o,i)=>html+=`<div class="s-opt${sel===i?' sel':''}" onclick="pickCh('${ch.id}',${i})"><span>${o}</span><div class="s-chk">${sel===i?'✓':''}</div></div>`);
+    html+=`</div></div>`;
+    c.innerHTML+=html;
+  });
+  document.getElementById('launch-btn').disabled=!CHALLENGES_DEF.every(c=>state.challenges[c.id]!==undefined);
+}
+
+function pickCh(id,i){state.challenges[id]=i;renderSetup();}
+
+function selDiff(d){
+  state.difficulty=d;
+  document.querySelectorAll('.d-opt').forEach(el=>el.classList.toggle('sel',el.dataset.diff===d));
+}
+
+function launchChallenge(){
+  state.phase='main';         // 必须在 save() 前赋值
+  state.startDate=getToday();
+  state.totalFails=0;
+  state.dayData={};
+  state.diaryData={};
+  save();
+  enterMainApp();
+}
+
+// =====================================================
+// Module: Home
+// Purpose: 主页初始化、进度条、激励语、Tab切换
+// Depends: State, Challenge, Timer, Utils
+// =====================================================
+
+function enterMainApp(){
+  document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));
+  document.getElementById('main-app').classList.remove('hidden');
+  document.getElementById('main-app').style.display='flex';
+  initHome();
+  switchTab(state.lastTab||'home');
+}
+
+function initHome(){
+  const day=getDayNum();
+  document.getElementById('main-day').textContent='DAY '+day;
+  const now=new Date();
+  document.getElementById('main-date').textContent=now.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'short'});
+  const limits={easy:50,medium:30,hard:10};
+  document.getElementById('main-fail').textContent=state.totalFails;
+  document.getElementById('main-limit').textContent=limits[state.difficulty];
+  renderProgress(day);
+  renderChallenges(); // 内部同时调用 renderTodayRing + renderWarnBanner
+  // 激励语轮播（清除旧 timer 再重建）
+  if(mottoTimer)clearInterval(mottoTimer);
+  rotateMotto();
+  mottoTimer=setInterval(rotateMotto,8000);
+  // 早起截止时间轮询（清除旧 timer 再重建，防止累积）
+  if(wakeTimer)clearInterval(wakeTimer);
+  wakeTimer=setInterval(pollWake,60000);
+  // 跨天检测（30秒轮询）
+  lastDate=getToday();
+  checkMidnight();
+}
+
+function renderProgress(day){
+  const pct=Math.round((day-1)/50*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-cur').textContent='当前第'+day+'天';
+}
+
+function rotateMotto(){
+  const el=document.getElementById('main-motto');if(!el)return;
+  el.style.opacity=0;
+  setTimeout(()=>{el.textContent=MOTTOS[state.mottoIdx%MOTTOS.length];state.mottoIdx++;el.style.opacity=1;},500);
+}
+
+function switchTab(tab){
+  // 记住最后浏览位置
+  state.lastTab=tab;
+  save();
+  ['home','diary','cal'].forEach(t=>{
+    document.getElementById('tab-'+t).classList.toggle('active',t===tab);
+    document.getElementById('nav-'+t).classList.toggle('active',t===tab);
+  });
+  if(tab==='diary'){
+    renderDiaryTab();
+    setTimeout(loadDiaryDraft,0); // 自动恢复草稿
+  }
+  if(tab==='cal') renderCalTab();
+}
+
+// =====================================================
+// Module: Challenge
+// Purpose: 挑战卡片渲染、打卡、撤销、今日进度环、预警横幅
+// Depends: State, Storage, Timer, Utils
+// =====================================================
+
+function renderChallenges(){
+  const container=document.getElementById('ch-list');if(!container)return;
+  container.innerHTML='';
+  const today=getToday();
+  const td=state.dayData[today]||{};
+  CHALLENGES_DEF.forEach(ch=>{
+    if(state.challenges[ch.id]===undefined)return;
+    const si=state.challenges[ch.id];
+    const label=ch.opts[si];
+    const st=td[ch.id]||'pending';
+    const card=document.createElement('div');card.className='ch-card';
+    const icon=st==='done'?'✅':st==='fail'?'❌':'⏳';
+    let actions='',extra='';
+
+    if(ch.isWake){
+      const wh=ch.wakeHours[si];
+      const expired=isWakeExpired(wh);
+      const hint=isFirstDay()?'（第一天可随时打卡）':`需在 ${wh}:01 前打卡`;
+      extra=`<div class="wake-hint${expired&&st!=='done'?' expired':''}">${hint}</div>`;
+      if(st==='done') actions=`<button class="btn-ck done">✓ 已完成</button><button class="btn-undo" onclick="undoCk('${ch.id}')">撤销</button>`;
+      else if(st==='fail'||expired) actions=`<button class="btn-ck failed" disabled>✗ 时间已过</button>`;
+      else actions=`<button class="btn-ck" onclick="doCheckin('${ch.id}')">打卡完成</button>`;
+    } else if(ch.isDiary){
+      const minC=ch.minChars[si];
+      extra=`<div class="ch-diary-hint">需写满 ${minC} 字才算完成</div>`;
+      if(st==='done') actions=`<button class="btn-ck done">✓ 已记录</button><button class="btn-undo" onclick="undoDiary()">撤销</button>`;
+      else actions=`<button class="btn-ck" onclick="switchTab('diary')">✍️ 写日记打卡</button>`;
+    } else if(ch.hasTimer){
+      const running=timers[ch.id]&&timers[ch.id].running;
+      const elapsed=timers[ch.id]?timers[ch.id].elapsed:0;
+      const total=ch.durations[si]*60;
+      const pct=Math.min(100,elapsed/total*100);
+      const rem=Math.max(0,total-elapsed);
+      if(st==='done'){
+        actions=`<button class="btn-ck done">✓ 已完成</button><button class="btn-undo" onclick="undoCk('${ch.id}')">撤销</button>`;
+      } else {
+        actions=`<button class="btn-ck" onclick="doCheckin('${ch.id}')">打卡完成</button>
+          <button class="btn-timer${running?' running':''}" id="tmr-btn-${ch.id}" onclick="toggleTimer('${ch.id}',${ch.durations[si]})">${running?'⏸ 暂停':'⏱ 计时'}</button>`;
+        extra=`<div id="tmr-row-${ch.id}" class="timer-row" style="display:${timers[ch.id]?'flex':'none'}">
+          <div class="tmr-track"><div class="tmr-fill" id="tmr-fill-${ch.id}" style="width:${pct}%"></div></div>
+          <div class="tmr-time" id="tmr-time-${ch.id}">${fmtTime(rem)}</div>
+          <button class="tmr-done" onclick="doCheckin('${ch.id}')">✓ 完成</button>
+        </div>`;
+      }
+    } else {
+      if(st==='done') actions=`<button class="btn-ck done">✓ 已完成</button><button class="btn-undo" onclick="undoCk('${ch.id}')">撤销</button>`;
+      else actions=`<button class="btn-ck" onclick="doCheckin('${ch.id}')">打卡完成</button>`;
+    }
+
+    card.innerHTML=`<div class="ch-head"><div><div class="ch-name">${ch.name}</div><div class="ch-target">${label}</div></div><span style="font-size:18px">${icon}</span></div>
+    ${extra}<div class="ch-actions">${actions}</div>`;
+    container.appendChild(card);
+  });
+  renderTodayRing();
+  renderWarnBanner();
+}
+
+function doCheckin(id){
+  if(saving)return; saving=true;
+  const today=getToday();
+  if(!state.dayData[today])state.dayData[today]={};
+  state.dayData[today][id]='done';
+  save();renderChallenges();renderProgress(getDayNum());
+  document.getElementById('main-fail').textContent=state.totalFails;
+  toast('✅ 打卡成功！');
+  checkAllDone(today);
+  setTimeout(()=>saving=false,800);
+}
+
+function undoCk(id){
+  if(saving)return; saving=true;
+  const today=getToday();
+  if(state.dayData[today])delete state.dayData[today][id];
+  if(timers[id]){clearInterval(timers[id].interval);delete timers[id];}
+  save();renderChallenges();toast('↩️ 已撤销打卡');
+  setTimeout(()=>saving=false,800);
+}
+
+function undoDiary(){
+  if(saving)return; saving=true;
+  const today=getToday();
+  if(state.dayData[today])delete state.dayData[today]['record'];
+  save();renderChallenges();toast('↩️ 已撤销日记打卡');
+  setTimeout(()=>saving=false,800);
+}
+
+function checkAllDone(today){
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const td=state.dayData[today]||{};
+  if(active.every(c=>td[c.id]==='done')){
+    setTimeout(()=>{
+      toast('🎉 今日全部完成！');
+      if(getDayNum()>=50) setTimeout(()=>showCelebrate(),1500);
+    },600);
+  }
+}
+
+function renderTodayRing(){
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const total=active.length;
+  const today=getToday();
+  const td=state.dayData[today]||{};
+  const done=active.filter(c=>td[c.id]==='done').length;
+  const pct=total>0?done/total:0;
+  const offset=150.8*(1-pct);
+  const fg=document.getElementById('ring-fg');
+  if(fg)fg.style.strokeDashoffset=offset;
+  const rn=document.getElementById('ring-n');if(rn)rn.textContent=done;
+  const rd=document.getElementById('ring-d');if(rd)rd.textContent='/ '+total;
+  const rt=document.getElementById('ring-title');
+  const rs=document.getElementById('ring-sub');
+  if(rt){
+    if(done===0)rt.textContent='今日尚未开始';
+    else if(done===total)rt.textContent='🎉 今日全部完成！';
+    else rt.textContent=`今日已完成 ${done} / ${total} 项`;
+  }
+  if(rs){
+    if(done===total)rs.textContent='太棒了，继续保持！';
+    else rs.textContent=`还剩 ${total-done} 项待完成`;
+  }
+}
+
+function renderWarnBanner(){
+  const limits={easy:50,medium:30,hard:10};
+  const lim=limits[state.difficulty];
+  const banner=document.getElementById('warn-banner');
+  const sub=document.getElementById('warn-banner-sub');
+  if(!banner)return;
+  const ratio=state.totalFails/lim;
+  if(ratio>=0.8&&state.totalFails<lim){
+    banner.classList.add('show');
+    if(sub)sub.textContent=`已失败 ${state.totalFails} 次，上限 ${lim} 次，仅剩 ${lim-state.totalFails} 次机会，请加油！`;
+  } else {
+    banner.classList.remove('show');
+  }
+}
+
+// =====================================================
+// Module: Timer
+// Purpose: 挑战计时器（开始/暂停/完成）、早起截止轮询、跨天检测
+// Depends: State, Challenge, Storage, Utils
+// =====================================================
+
+function toggleTimer(id,mins){
+  const secs=mins*60;
+  if(timers[id]&&timers[id].running){
+    clearInterval(timers[id].interval);timers[id].running=false;
+  } else {
+    if(!timers[id])timers[id]={elapsed:0};
+    timers[id].running=true;
+    const start=Date.now()-timers[id].elapsed*1000;
+    timers[id].interval=setInterval(()=>{
+      const el=Math.floor((Date.now()-start)/1000);
+      timers[id].elapsed=el;
+      const rem=Math.max(0,secs-el);
+      const fill=document.getElementById('tmr-fill-'+id);
+      const time=document.getElementById('tmr-time-'+id);
+      const row=document.getElementById('tmr-row-'+id);
+      if(row)row.style.display='flex';
+      if(fill)fill.style.width=Math.min(100,el/secs*100)+'%';
+      if(time)time.textContent=fmtTime(rem);
+      if(el>=secs){clearInterval(timers[id].interval);timers[id].running=false;doCheckin(id);}
+    },1000);
+  }
+  renderChallenges();
+}
+
+function pollWake(){
+  // 每60秒检查一次早起截止时间，过期自动标记失败
+  const today=getToday();
+  const ch=CHALLENGES_DEF.find(c=>c.isWake);
+  if(!ch||state.challenges[ch.id]===undefined)return;
+  const wh=ch.wakeHours[state.challenges[ch.id]];
+  const td=state.dayData[today]||{};
+  if(isWakeExpired(wh)&&(!td[ch.id]||td[ch.id]==='pending')){
+    if(!state.dayData[today])state.dayData[today]={};
+    state.dayData[today][ch.id]='fail';state.totalFails++;
+    save();renderChallenges();document.getElementById('main-fail').textContent=state.totalFails;
+  }
+}
+
+function checkMidnight(){
+  // 每30秒检测是否跨天，跨天后自动标记未完成任务并刷新主页
+  if(midnightTimer)clearInterval(midnightTimer);
+  midnightTimer=setInterval(()=>{
+    const today=getToday();
+    if(today!==lastDate){
+      lastDate=today;
+      markMissed();
+      const day=getDayNum();
+      document.getElementById('main-day').textContent='DAY '+day;
+      const now=new Date();
+      document.getElementById('main-date').textContent=now.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'short'});
+      renderProgress(day);
+      renderChallenges();
+    }
+  },30000);
+}
+
+function markMissed(){
+  // 将昨天未完成的挑战标记为 fail，累计总失败次数
+  const today=getToday();
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  if(!state.dayData[today])state.dayData[today]={};
+  const td=state.dayData[today];let missed=0;
+  active.forEach(c=>{if(!td[c.id]||td[c.id]==='pending'){td[c.id]='fail';missed++;}});
+  if(missed>0){state.totalFails+=missed;save();}
+}
+
+// =====================================================
+// Module: Diary
+// Purpose: 挑战日记（展示、写入、图片上传）
+// Depends: State, Storage, Challenge, Utils
+// =====================================================
+
+// =======================
+// 自动草稿
+// =======================
+
+function getDraftKey(){
+  return 'draft_'+getToday();
+}
+
+function saveDiaryDraft(){
+  const ta=document.getElementById('diary-input');
+  if(!ta)return;
+  localStorage.setItem(getDraftKey(),ta.value);
+}
+
+function loadDiaryDraft(){
+  const ta=document.getElementById('diary-input');
+  if(!ta)return;
+  const txt=localStorage.getItem(getDraftKey());
+  if(txt!==null){
+    ta.value=txt;
+    if(typeof updateDiaryCount==='function') updateDiaryCount();
+  }
+}
+
+function clearDiaryDraft(){
+  localStorage.removeItem(getDraftKey());
+}
+
+function renderDiaryTab(){
+  const list=document.getElementById('diary-entries');
+  const entries=Object.entries(state.diaryData).sort((a,b)=>b[0].localeCompare(a[0]));
+  const min=getMinChars();
+  document.getElementById('diary-min-hint').textContent=`写满 ${min} 字才算完成挑战七`;
+  if(!entries.length){
+    list.innerHTML='<div class="diary-empty">还没有日记记录<br><br>写下今天的感悟吧 ✍️</div>';
+  } else {
+    list.innerHTML=entries.map(([date,entry])=>{
+      const text=(entry.text||entry).toString().replace(/</g,'&lt;');
+      const imgs=entry.images&&entry.images.length
+        ?`<div class="diary-imgs">${entry.images.map(src=>`<img class="diary-img" src="${src}" onclick="openLightbox('${src}')" loading="lazy">`).join('')}</div>`:'';
+      return`<div class="diary-entry">
+        <div class="diary-date">${new Date(date+'T00:00:00').toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'short'})} · DAY ${getDayOf(date)}</div>
+        <div class="diary-text">${text}</div>${imgs}
+      </div>`;
+    }).join('');
+  }
+  updateDiaryCount();
+  // 恢复当天草稿
+  setTimeout(()=>{
+    loadDiaryDraft();
+    updateDiaryCount();
+  },0);
+}
+
+function getMinChars(){
+  const ch=CHALLENGES_DEF.find(c=>c.isDiary);
+  return ch.minChars[state.challenges[ch.id]??0];
+}
+
+function updateDiaryCount(){
+  const input=document.getElementById('diary-input');if(!input)return;
+  const len=input.value.length,min=getMinChars();
+  const cc=document.getElementById('diary-char');
+  if(cc){cc.textContent=len+' 字';cc.className='diary-count'+(len>=min?' ok':'');}
+  const btn=document.getElementById('diary-save-btn');
+  if(btn)btn.disabled=len<min;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const diaryInput=document.getElementById('diary-input');
+  if(diaryInput){
+    diaryInput.addEventListener('input',function(){
+      updateDiaryCount();
+      clearTimeout(diaryDraftTimer);
+      diaryDraftTimer=setTimeout(function(){
+        saveDiaryDraft(); // 停止输入3秒后自动保存草稿
+      },3000);
+    });
+  }
+});
+
+function handleImgUpload(e){
+  Array.from(e.target.files).forEach(file=>{
+    const r=new FileReader();
+    r.onload=ev=>{pendingImgs.push(ev.target.result);renderImgPreviews();saveDiaryDraft();};
+    r.readAsDataURL(file);
+  });
+  e.target.value='';
+}
+
+function renderImgPreviews(){
+  document.getElementById('img-preview-area').innerHTML=
+    pendingImgs.map((src,i)=>`<div class="img-preview"><img src="${src}"><button class="img-del" onclick="removePendingImg(${i})">✕</button></div>`).join('');
+}
+
+function removePendingImg(i){pendingImgs.splice(i,1);renderImgPreviews();saveDiaryDraft();}
+
+function saveDiary(){
+  if(saving)return; saving=true;
+  const input=document.getElementById('diary-input');
+  const text=input.value.trim();
+  if(!text){
+    toast('请输入日记内容');
+    saving=false;return;
+  }
+  const today=getToday();
+  state.diaryData[today]={text,images:[...pendingImgs]};
+  if(!state.dayData[today])state.dayData[today]={};
+  state.dayData[today]['record']='done';
+  save();
+  // 保存成功后：删除草稿、清空输入、清空图片
+  clearDiaryDraft();
+  input.value='';
+  pendingImgs=[];
+  updateDiaryCount();
+  const preview=document.getElementById('img-preview-area');
+  if(preview)preview.innerHTML='';
+  renderDiaryTab();
+  renderChallenges();
+  toast('📓 日记已保存！');
+  checkAllDone(today);
+  setTimeout(()=>saving=false,800);
+}
+
+// =====================================================
+// Module: Calendar
+// Purpose: 挑战日历（月视图、🐕/💩图标、统计数据）
+// Depends: State, Utils
+// =====================================================
+
+function renderCalTab(){
+  const now=new Date();
+  const y=now.getFullYear(),m=now.getMonth();
+  document.getElementById('cal-month').textContent=y+'年'+(m+1)+'月';
+  const firstDay=new Date(y,m,1).getDay();
+  const daysInMonth=new Date(y,m+1,0).getDate();
+  const container=document.getElementById('cal-days');container.innerHTML='';
+  for(let i=0;i<firstDay;i++){const d=document.createElement('div');d.className='cal-d';container.appendChild(d);}
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  for(let d=1;d<=daysInMonth;d++){
+    const ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday=d===now.getDate();
+    const data=state.dayData[ds];
+    let icon='';
+    if(data){const done=active.filter(c=>data[c.id]==='done').length;icon=done===active.length?'🐕':'💩';}
+    const el=document.createElement('div');
+    el.className='cal-d active'+(isToday?' today':'');
+    el.innerHTML=`<div class="cal-icon">${icon}</div><div class="cal-dn">${d}</div>`;
+    container.appendChild(el);
+  }
+  document.getElementById('cal-fail-cnt').textContent=state.totalFails;
+  // 统计
+  let complete=0,streak=0;
+  Object.values(state.dayData).forEach(d=>{if(active.every(c=>d[c.id]==='done'))complete++;});
+  for(let i=0;i<50;i++){
+    const d=new Date(now);d.setDate(now.getDate()-i);
+    const ds=d.toISOString().split('T')[0];
+    const dd=state.dayData[ds];
+    if(dd&&active.every(c=>dd[c.id]==='done'))streak++;else break;
+  }
+  document.getElementById('stat-done').textContent=complete;
+  document.getElementById('stat-streak').textContent=streak;
+}
+
+// =====================================================
+// Module: Backup
+// Purpose: 快照创建、恢复码、JSON导出导入、自动备份恢复
+// Depends: Storage, State, Utils
+// =====================================================
+
+// ── 快照 ──
+function createSnapshot(){
+  return{
+    app:'Project50',
+    schema:1,
+    build:BUILD_NAME,
+    time:new Date().toISOString(),
+    device:/iphone|ipad|ipod/i.test(navigator.userAgent)?'ios':/android/i.test(navigator.userAgent)?'android':'desktop',
+    state:JSON.parse(JSON.stringify(state))
+  };
+}
+
+function validateSnapshot(data){
+  if(!data||typeof data!=='object')return false;
+  if(data.app!=='Project50')return false;
+  const s=data.state||data; // 兼容旧格式（直接是 state 的裸对象）
+  return !!(s.dayData&&s.challenges); // startDate 可为 null（重置后）
+}
+
+// ── 自动快照（每次 save 调用）──
+function updateAutoBackup(){
+  try{
+    state.lastBackupTime=Date.now();
+    localStorage.setItem('project50_auto_backup',JSON.stringify(createSnapshot()));
+  }catch(e){}
+}
+
+function restoreAutoBackup(){
+  const raw=localStorage.getItem('project50_auto_backup');
+  if(!raw){toast('没有找到自动备份');return;}
+  try{
+    const snap=JSON.parse(raw);
+    if(!validateSnapshot(snap)){toast('备份文件格式错误');return;}
+    const t=new Date(snap.time).toLocaleString('zh-CN');
+    showModal(
+      '⏪ 恢复自动备份',
+      `备份时间：${t}\n\n恢复后当前数据将被覆盖，是否继续？`,
+      '确认恢复',
+      ()=>{
+        state=migrateState(snap.state||snap);
+        save();closeModal();
+        toast('✅ 已恢复自动备份，正在刷新...');
+        setTimeout(()=>location.reload(),800);
+      },true
+    );
+  }catch(e){toast('读取备份失败');}
+}
+
+// ── 恢复码 ──
+function encodeRecoveryCode(snapshot){
+  const json=JSON.stringify(snapshot);
+  // UTF-8 → base64url → 加前缀
+  const b64=btoa(unescape(encodeURIComponent(json)));
+  const b64url=b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+  return 'P50V1-'+b64url;
+}
+
+function decodeRecoveryCode(code){
+  try{
+    const b64url=code.replace(/^P50V1-/,'');
+    const b64=b64url.replace(/-/g,'+').replace(/_/g,'/');
+    const json=decodeURIComponent(escape(atob(b64)));
+    return JSON.parse(json);
+  }catch(e){return null;}
+}
+
+async function copyRecoveryCode(){
+  const snap=createSnapshot();
+  const code=encodeRecoveryCode(snap);
+  copyText(code);
+  toast('📋 恢复码已复制，粘贴到备忘录保存');
+}
+
+function restoreRecoveryCode(){
+  showInputModal(
+    '📥 输入恢复码',
+    '粘贴你之前复制的恢复码（P50V1- 开头）',
+    '恢复',
+    (code)=>{
+      const snap=decodeRecoveryCode(code.trim());
+      if(!snap||!validateSnapshot(snap)){toast('恢复码无效，请检查是否完整');return;}
+      showModal(
+        '确认恢复',
+        '恢复后当前数据将被覆盖，是否继续？',
+        '确认恢复',
+        ()=>{
+          localStorage.setItem('project50_import_backup',JSON.stringify(state));
+          state=migrateState(snap.state||snap);
+          save();closeModal();
+          toast('✅ 恢复成功，正在刷新...');
+          setTimeout(()=>location.reload(),800);
+        },true
+      );
+    }
+  );
+}
+
+// ── JSON 导出 ──
+function exportData(){
+  try{
+    save();
+    const json=JSON.stringify(createSnapshot(),null,2);
+    const blob=new Blob([json],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.style.display='none';a.href=url;a.download='Project50_'+getToday()+'.json';
+    document.body.appendChild(a);
+    a.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window}));
+    setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1000);
+    toast('📤 导出成功，文件已下载');
+  }catch(err){
+    // 下载失败（iOS Safari）→ 提示用恢复码
+    toast('下载失败，请使用「复制恢复码」保存数据');
+  }
+}
+
+// ── JSON 导入 ──
+function importData(event){
+  const file=event.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(){
+    try{
+      const snap=JSON.parse(reader.result);
+      if(!validateSnapshot(snap)){toast('文件格式错误，请选择正确的备份文件');return;}
+      showModal(
+        '📥 导入数据',
+        '导入将覆盖当前所有数据。\n当前数据已自动备份，导入失败可恢复。\n\n是否继续？',
+        '确认导入',
+        ()=>{
+          try{
+            localStorage.setItem('project50_import_backup',JSON.stringify(state));
+            state=migrateState(snap.state||snap);
+            save();closeModal();
+            toast('📥 导入成功，正在刷新...');
+            setTimeout(()=>location.reload(),800);
+          }catch(e){
+            const bak=localStorage.getItem('project50_import_backup');
+            if(bak)try{state=JSON.parse(bak);save();}catch(_){}
+            toast('导入失败，已恢复原数据');
+          }
+        },true
+      );
+    }catch(err){toast('JSON解析失败，文件可能已损坏');}
+  };
+  reader.readAsText(file,'utf-8');
+  event.target.value='';
+}
+
+// ── 输入弹窗（用于恢复码输入）──
+function showInputModal(title,placeholder,btnText,onConfirm){
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:1000';
+  overlay.innerHTML=`<div style="background:#fff;border-radius:20px;padding:24px 20px;width:300px;max-width:88vw">
+    <div style="font-size:17px;font-weight:700;color:#1F1535;margin-bottom:12px;text-align:center">${title}</div>
+    <textarea id="input-modal-ta" placeholder="${placeholder}"
+      style="width:100%;height:88px;border:1.5px solid #F3E8F0;border-radius:12px;padding:10px;font-size:13px;resize:none;outline:none;font-family:monospace"></textarea>
+    <button onclick="(()=>{const v=document.getElementById('input-modal-ta').value;document.body.removeChild(this.closest('[data-imodal]'));if(v.trim())(${onConfirm.toString()})(v);})()"
+      style="width:100%;padding:13px;margin-top:10px;border:none;border-radius:12px;background:#F472B6;font-size:15px;font-weight:600;color:#fff;cursor:pointer">${btnText}</button>
+    <button onclick="document.body.removeChild(this.closest('[data-imodal]'))"
+      style="width:100%;padding:13px;margin-top:8px;border:1.5px solid #F3E8F0;border-radius:12px;background:#fff;font-size:15px;color:#9CA3AF;cursor:pointer">取消</button>
+  </div>`;
+  overlay.setAttribute('data-imodal','1');
+  overlay.querySelector('textarea').setAttribute('id','input-modal-ta');
+  // Fix button onclick to close overlay properly
+  const btns=overlay.querySelectorAll('button');
+  btns[0].onclick=()=>{
+    const v=overlay.querySelector('textarea').value;
+    document.body.removeChild(overlay);
+    if(v.trim())onConfirm(v);
+  };
+  btns[1].onclick=()=>document.body.removeChild(overlay);
+  document.body.appendChild(overlay);
+  setTimeout(()=>overlay.querySelector('textarea').focus(),100);
+}
+
+// ── Settings 面板 ──
+function showSettings(){
+  const bak=localStorage.getItem('project50_auto_backup');
+  let bakTime='暂无';
+  if(bak){
+    try{
+      const snap=JSON.parse(bak);
+      bakTime=new Date(snap.time).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    }catch(e){}
+  }
+
+  const S='width:100%;padding:13px;border:1.5px solid #F3E8F0;border-radius:12px;background:#fff;font-size:14px;font-weight:600;color:#1F1535;cursor:pointer;text-align:left;display:block;margin-bottom:0';
+  const SS='flex:1;padding:12px;border:1.5px solid #F3E8F0;border-radius:12px;background:#fff;font-size:13px;font-weight:600;color:#1F1535;cursor:pointer';
+
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:flex-end;justify-content:center;z-index:2000';
+  overlay.innerHTML=`
+  <div style="background:#fff;border-radius:20px 20px 0 0;padding:24px 20px 40px;width:100%;max-width:420px;box-sizing:border-box">
+    <div style="width:40px;height:4px;background:#F3E8F0;border-radius:2px;margin:0 auto 20px"></div>
+    <div style="font-size:17px;font-weight:700;color:#1F1535;margin-bottom:16px">⚙️ 设置 · 数据安全</div>
+
+    <div style="font-size:11px;color:#9CA3AF;font-weight:600;letter-spacing:0.5px;margin-bottom:8px">推荐方式</div>
+    <button data-act="recovery-copy" style="${S}">📋 复制恢复码</button>
+    <button data-act="recovery-restore" style="${S};margin-top:8px">📥 输入恢复码恢复</button>
+
+    <div style="font-size:11px;color:#9CA3AF;font-weight:600;letter-spacing:0.5px;margin:16px 0 8px">高级（JSON文件）</div>
+    <div style="display:flex;gap:8px">
+      <button data-act="export" style="${SS}">📄 导出JSON</button>
+      <button data-act="import" style="${SS}">📂 导入JSON</button>
+    </div>
+
+    <div style="font-size:11px;color:#9CA3AF;font-weight:600;letter-spacing:0.5px;margin:16px 0 6px">最近自动备份</div>
+    <div style="font-size:13px;color:#6B7280;margin-bottom:8px">🕐 ${bakTime}</div>
+    <button data-act="restore-auto" style="${S}">⏪ 恢复最近自动备份</button>
+
+    <div style="height:1px;background:#F3E8F0;margin:16px 0"></div>
+    <button data-act="reset" style="width:100%;padding:13px;border:1.5px solid #FECACA;border-radius:12px;background:#FEF2F2;font-size:14px;font-weight:600;color:#F87171;cursor:pointer;text-align:left;display:block">🔄 清空所有数据</button>
+    <button data-act="close" style="width:100%;padding:13px;margin-top:10px;border:1.5px solid #F3E8F0;border-radius:12px;background:#fff;font-size:14px;color:#9CA3AF;cursor:pointer">关闭</button>
+  </div>`;
+
+  overlay.addEventListener('click',e=>{
+    const act=e.target.dataset.act||(e.target.closest('[data-act]')?.dataset.act);
+    if(!act)return;
+    document.body.removeChild(overlay);
+    if(act==='recovery-copy')    copyRecoveryCode();
+    else if(act==='recovery-restore') restoreRecoveryCode();
+    else if(act==='export')      exportData();
+    else if(act==='import')      document.getElementById('import-json').click();
+    else if(act==='restore-auto') restoreAutoBackup();
+    else if(act==='reset')       confirmReset();
+    // close: 已移除 overlay，无需额外操作
+  });
+
+  document.body.appendChild(overlay);
+}
+
+// =====================================================
+// Module: Share
+// Purpose: 每日打卡分享卡片生成（Canvas），三层兼容（Web Share API / 长按 / 下载）
+// Depends: State, Utils
+// =====================================================
+
+function showDailyShare(){
+  const day=getDayNum();
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const today=getToday();
+  const td=state.dayData[today]||{};
+  const done=active.filter(c=>td[c.id]==='done').length;
+  drawDailyShareCard(day,done,active.length);
+  document.getElementById('share-modal').classList.remove('hidden');
+}
+
+function drawDailyShareCard(day,done,total){
+  const canvas=document.getElementById('daily-share-canvas');
+  const ctx=canvas.getContext('2d');
+  const W=680,H=480;
+  const bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#FFF0F8');bg.addColorStop(1,'#F9A8D4');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(255,255,255,0.25)';
+  ctx.beginPath();ctx.arc(W-60,60,120,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(60,H-60,80,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#BE185D';ctx.font='bold 28px sans-serif';ctx.textAlign='left';
+  ctx.fillText('🌸 50天重启人生挑战',48,72);
+  ctx.fillStyle='#1F1535';ctx.font='bold 130px sans-serif';ctx.textAlign='center';
+  ctx.fillText(day,W/2,240);
+  ctx.fillStyle='#F472B6';ctx.font='bold 36px sans-serif';
+  ctx.fillText('D A Y',W/2,300);
+  ctx.fillStyle='#6B7280';ctx.font='24px sans-serif';
+  ctx.fillText(`我已坚持 ${day} / 50 天`,W/2,350);
+  const pct=total>0?Math.round(done/total*100):0;
+  ctx.fillStyle='rgba(255,255,255,0.6)';
+  roundRect(ctx,48,378,W-96,60,14);ctx.fill();
+  ctx.fillStyle='#BE185D';ctx.font='bold 20px sans-serif';ctx.textAlign='left';
+  ctx.fillText(`今日打卡 ${done}/${total} 项完成  ·  完成率 ${pct}%`,72,415);
+  ctx.fillStyle='#F472B6';ctx.font='18px sans-serif';ctx.textAlign='right';
+  ctx.fillText('Project 50 · 重启人生',W-48,460);
+}
+
+function copyDailyShareText(){
+  const day=getDayNum();
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const td=state.dayData[getToday()]||{};
+  const done=active.filter(c=>td[c.id]==='done').length;
+  copyText(`🌸 50天重启人生挑战\n\n我已坚持 Day ${day} / 50 天！\n今日完成 ${done}/${active.length} 项打卡 ✅\n\n#50天重启人生 #Project50 #自律改变人生`);
+  toast('📋 文字已复制，去发朋友圈吧！');
+}
+
+function saveDailyShareImg(){
+  const canvas=document.getElementById('daily-share-canvas');
+  if(!canvas){toast('❌ 未找到分享图片');return;}
+  const fileName=`打卡Day${getDayNum()}_Project50.png`;
+  const dataUrl=canvas.toDataURL('image/png');
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  function fallback(){
+    if(isIOS){
+      const w=window.open();
+      if(!w){toast('⚠️ 请允许弹窗以保存图片');return;}
+      w.document.write(`<html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>保存图片</title></head>
+      <body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column">
+        <p style="color:#fff;font-size:15px;margin-bottom:16px;padding:0 20px;text-align:center">长按图片 → 存储到相册</p>
+        <img src="${dataUrl}" style="max-width:95%;border-radius:12px">
+      </body></html>`);
+      toast('👉 长按图片保存到相册');
+    } else {
+      const a=document.createElement('a');
+      a.href=dataUrl;a.download=fileName;
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      toast('🖼️ 图片已保存！');
+    }
+  }
+  // 优先：Web Share API（iOS15+ / 安卓Chrome）
+  if(navigator.canShare){
+    fetch(dataUrl).then(r=>r.blob()).then(blob=>{
+      const file=new File([blob],fileName,{type:'image/png'});
+      if(navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:'Project 50',text:`我已坚持 Day ${getDayNum()} / 50 天！`})
+          .then(()=>toast('📤 分享成功！')).catch(()=>fallback());
+      } else {fallback();}
+    }).catch(()=>fallback());
+    return;
+  }
+  fallback();
+}
+
+// =====================================================
+// Module: Statistics
+// Purpose: 50天庆祝页统计数据计算
+// Depends: State
+// =====================================================
+
+function getCelebrateStats(){
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const total=active.length;
+  let completeDays=0,diaryCount=0,totalDone=0,totalPossible=0;
+  Object.entries(state.dayData).forEach(([date,d])=>{
+    const done=active.filter(c=>d[c.id]==='done').length;
+    totalDone+=done;totalPossible+=total;
+    if(done===total)completeDays++;
+  });
+  diaryCount=Object.keys(state.diaryData).length;
+  const rate=totalPossible>0?Math.round(totalDone/totalPossible*100):0;
+  return{completeDays,diaryCount,rate,streak:getMaxStreak()};
+}
+
+function getMaxStreak(){
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const dates=Object.keys(state.dayData).sort();
+  let max=0,cur=0;
+  dates.forEach(ds=>{
+    const d=state.dayData[ds];
+    if(d&&active.every(c=>d[c.id]==='done')){cur++;max=Math.max(max,cur);}
+    else cur=0;
+  });
+  return max;
+}
+
+// =====================================================
+// Module: Celebrate
+// Purpose: 50天庆祝页展示、成就卡生成与分享
+// Depends: Statistics, Share, Utils
+// =====================================================
+
+function showCelebrate(){
+  document.getElementById('main-app').classList.add('hidden');
+  document.getElementById('main-app').style.display='none';
+  const s=getCelebrateStats();
+  document.getElementById('cel-stats').innerHTML=`
+    <div class="cel-stat"><div class="cel-stat-num">${s.completeDays}</div><div class="cel-stat-lbl">🐕 全部完成天数</div></div>
+    <div class="cel-stat"><div class="cel-stat-num">${s.rate}%</div><div class="cel-stat-lbl">✅ 总完成率</div></div>
+    <div class="cel-stat"><div class="cel-stat-num">${s.streak}</div><div class="cel-stat-lbl">🔥 最长连续天数</div></div>
+    <div class="cel-stat"><div class="cel-stat-num">${s.diaryCount}</div><div class="cel-stat-lbl">📓 日记篇数</div></div>
+  `;
+  document.getElementById('cel-share-stats').innerHTML=`
+    <div class="share-stat"><div class="share-stat-n">${s.completeDays}</div><div class="share-stat-l">全勤天数</div></div>
+    <div class="share-stat"><div class="share-stat-n">${s.rate}%</div><div class="share-stat-l">完成率</div></div>
+    <div class="share-stat"><div class="share-stat-n">${s.streak}</div><div class="share-stat-l">最长连续</div></div>
+  `;
+  showScreen('celebrate-screen');
+}
+
+function copyShareText(){
+  const s=getCelebrateStats();
+  copyText(`🌸 我完成了50天重启人生挑战！\n\n✅ 总完成率 ${s.rate}%\n🐕 全勤天数 ${s.completeDays} 天\n🔥 最长连续 ${s.streak} 天\n📓 写了 ${s.diaryCount} 篇日记\n\n#50天重启人生 #Project50`);
+  toast('📋 文字已复制，去发朋友圈吧！');
+}
+
+function saveShareCard(){
+  const s=getCelebrateStats();
+  const canvas=document.createElement('canvas');
+  canvas.width=600;canvas.height=340;
+  const ctx=canvas.getContext('2d');
+  const grad=ctx.createLinearGradient(0,0,600,340);
+  grad.addColorStop(0,'#FFF0F8');grad.addColorStop(1,'#FCE7F3');
+  ctx.fillStyle=grad;ctx.fillRect(0,0,600,340);
+  ctx.strokeStyle='#F9A8D4';ctx.lineWidth=3;
+  roundRect(ctx,10,10,580,320,20);ctx.stroke();
+  ctx.fillStyle='#F472B6';ctx.font='bold 22px sans-serif';ctx.textAlign='center';
+  ctx.fillText('🌸 50天重启人生挑战',300,56);
+  ctx.fillStyle='#1F1535';ctx.font='bold 80px sans-serif';
+  ctx.fillText('50',300,148);
+  ctx.fillStyle='#9CA3AF';ctx.font='18px sans-serif';
+  ctx.fillText('天挑战圆满完成 🏆',300,178);
+  const stats=[['全勤天数',s.completeDays+'天'],['完成率',s.rate+'%'],['最长连续',s.streak+'天']];
+  stats.forEach(([l,v],i)=>{
+    const x=110+i*190;
+    ctx.fillStyle='#F472B6';ctx.font='bold 26px sans-serif';ctx.textAlign='center';
+    ctx.fillText(v,x,230);
+    ctx.fillStyle='#9CA3AF';ctx.font='13px sans-serif';
+    ctx.fillText(l,x,252);
+  });
+  ctx.fillStyle='#F9A8D4';ctx.font='13px sans-serif';ctx.textAlign='center';
+  ctx.fillText('Project 50 · 重启人生',300,300);
+  const dataUrl=canvas.toDataURL('image/png');
+  const fileName='50天挑战成就卡_Project50.png';
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  function fallback(){
+    if(isIOS){
+      const w=window.open();
+      if(!w){toast('⚠️ 请允许弹窗以保存图片');return;}
+      w.document.write(`<html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>保存图片</title></head>
+      <body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column">
+        <p style="color:#fff;font-size:15px;margin-bottom:16px;padding:0 20px;text-align:center">长按图片 → 存储到相册</p>
+        <img src="${dataUrl}" style="max-width:95%;border-radius:12px">
+      </body></html>`);
+      toast('👉 长按图片保存到相册');
+    } else {
+      const a=document.createElement('a');
+      a.href=dataUrl;a.download=fileName;
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      toast('🖼️ 成就卡已保存！');
+    }
+  }
+  if(navigator.canShare){
+    fetch(dataUrl).then(r=>r.blob()).then(blob=>{
+      const file=new File([blob],fileName,{type:'image/png'});
+      if(navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:'Project 50',text:'我完成了50天重启人生挑战！'})
+          .then(()=>toast('📤 分享成功！')).catch(()=>fallback());
+      } else {fallback();}
+    }).catch(()=>fallback());
+    return;
+  }
+  fallback();
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath();
+}
+
+function celebrateToHome(){
+  state.phase='quiz';state.startDate=null;state.quizAnswers=[];
+  state.challenges={};state.dayData={};state.diaryData={};
+  state.totalFails=0;state.lastBackupTime=0;state.version=STATE_VERSION;
+  save();
+  document.getElementById('main-app').classList.add('hidden');
+  document.getElementById('main-app').style.display='none';
+  quizCur=0;renderQuiz();showScreen('quiz-screen');
+}
+
+// =====================================================
+// Module: Reset
+// Purpose: 一键重置挑战（清除所有数据）
+// Depends: Storage, State, Utils
+// =====================================================
+
+function confirmReset(){
+  showModal(
+    '⚠️ 确认重置',
+    '重置将清除所有挑战记录、日记和进度，恢复到最初状态。\n\n此操作不可撤销，确定要继续吗？',
+    '确认重置，重新开始',
+    ()=>{doReset();},
+    true
+  );
+}
+
+function doReset(){
+  ['p50_data','p50_data_bak','p50_v5','p50_v4','p50_v3','p50_v2','p50'].forEach(k=>localStorage.removeItem(k));
+  state={phase:'quiz',quizAnswers:[],challenges:{},difficulty:'medium',startDate:null,
+    dayData:{},diaryData:{},totalFails:0,mottoIdx:0,
+    lastTab:'home',lastBackupTime:0,version:STATE_VERSION
+  };
+  timers={};pendingImgs=[];quizCur=0;
+  if(mottoTimer)clearInterval(mottoTimer);
+  if(wakeTimer)clearInterval(wakeTimer);
+  if(midnightTimer)clearInterval(midnightTimer);
+  closeModal();
+  document.getElementById('main-app').classList.add('hidden');
+  document.getElementById('main-app').style.display='none';
+  quizCur=0;renderQuiz();showScreen('quiz-screen');
+  toast('✅ 已重置，重新开始吧！');
+}
+
+// =====================================================
+// Module: InstallPrompt
+// Purpose: PWA 安装引导（Android 原生安装 + iPhone 手动提示）
+// =====================================================
+
+let deferredInstallPrompt=null; // 拦截 beforeinstallprompt 事件
+
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredInstallPrompt=e;
+});
+
+function isInStandaloneMode(){
+  return window.matchMedia('(display-mode: standalone)').matches
+    ||window.navigator.standalone===true;
+}
+
+function initInstallPrompt(){
+  // 已安装则不显示
+  if(isInStandaloneMode())return;
+  // 7天内已关闭过则不显示
+  const dismissed=localStorage.getItem('p50_install_dismissed');
+  if(dismissed&&Date.now()-parseInt(dismissed)<7*24*3600*1000)return;
+  // 延迟 3 秒后显示，不打扰用户
+  setTimeout(showInstallBanner,3000);
+}
+
+function showInstallBanner(){
+  const banner=document.getElementById('install-banner');
+  const confirmBtn=document.getElementById('install-confirm-btn');
+  const stepsEl=document.getElementById('install-steps');
+  const subEl=document.getElementById('install-sub');
+  if(!banner)return;
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  if(isIOS){
+    // iPhone：引导手动添加
+    if(subEl)subEl.textContent='跟着步骤添加到主屏幕';
+    if(stepsEl)stepsEl.innerHTML='① 点击底部 <b>分享按钮</b> 🔗<br>② 选择「<b>添加到主屏幕</b>」<br>③ 点击右上角「<b>添加</b>」';
+    if(confirmBtn){confirmBtn.textContent='我知道了';confirmBtn.onclick=dismissInstall;}
+  } else if(deferredInstallPrompt){
+    // Android：原生安装
+    if(stepsEl)stepsEl.innerHTML='点击「立即安装」，在弹出窗口确认即可完成安装。\n安装后从桌面图标打开，无需浏览器地址栏。';
+    if(confirmBtn){
+      confirmBtn.textContent='立即安装';
+      confirmBtn.onclick=async()=>{
+        dismissInstall();
+        deferredInstallPrompt.prompt();
+        const result=await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt=null;
+        if(result.outcome==='accepted')toast('✅ 安装成功！可从桌面图标打开');
+      };
+    }
+  } else {
+    // 不支持安装（桌面浏览器等）
+    return;
+  }
+  banner.classList.add('show');
+}
+
+function dismissInstall(){
+  localStorage.setItem('p50_install_dismissed',Date.now().toString());
+  const banner=document.getElementById('install-banner');
+  if(banner)banner.classList.remove('show');
+}
+
+// =====================================================
+// Module: Modal
+// Purpose: 通用弹窗、失败详情、图片灯箱
+// Depends: Utils
+// =====================================================
+
+function showModal(title,sub,btn1text,action,danger=false){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-sub').textContent=sub;
+  const b=document.getElementById('modal-btn1');
+  b.textContent=btn1text;
+  b.className='modal-btn'+(danger?' danger':'');
+  b.onclick=action||closeModal;
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+function closeModal(){document.getElementById('modal').classList.add('hidden');}
+
+function showFailInfo(){
+  const limits={easy:50,medium:30,hard:10};
+  const lim=limits[state.difficulty];
+  const rem=Math.max(0,lim-state.totalFails);
+  showModal('未完成挑战统计',`已累计未完成 ${state.totalFails} 次\n难度上限 ${lim} 次，还剩 ${rem} 次机会\n\n继续加油，你可以的！💪`,'我知道了，继续！',closeModal);
+}
+
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.remove('hidden');}
+function closeLightbox(){document.getElementById('lightbox').classList.add('hidden');}
+</script>
+</body>
+</html>
