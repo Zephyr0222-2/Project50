@@ -81,9 +81,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 
 /* ── HOME TAB ── */
 #tab-home{background:var(--bg);overflow-y:auto}
-.home-header{padding:20px 20px 12px;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0}
+.home-header{padding:20px 20px 12px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .day-badge{font-size:28px;font-weight:800;color:var(--pink);letter-spacing:-1px}
 .day-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.header-status{display:flex;align-items:center;gap:10px}
 .fail-num{font-size:18px;font-weight:700;color:var(--red)}
 .fail-lbl{font-size:10px;color:var(--muted)}
 .prog-area{padding:0 20px 12px}
@@ -115,7 +116,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 .wake-hint{font-size:11px;color:var(--muted);padding:0 16px 10px}
 .wake-hint.expired{color:var(--red)}
 /* 今日进度环 */
-.today-ring-row{display:flex;align-items:center;gap:14px;padding:10px 20px 0}
 .ring-wrap{position:relative;width:56px;height:56px;flex-shrink:0}
 .ring-wrap svg{transform:rotate(-90deg)}
 .ring-bg{fill:none;stroke:var(--border);stroke-width:5}
@@ -255,6 +255,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 .btn-install{flex:2;padding:13px;border:none;border-radius:12px;background:var(--pink);font-size:14px;font-weight:700;color:#fff;cursor:pointer}
 .btn-install-later{flex:1;padding:13px;border:1.5px solid var(--border);border-radius:12px;background:var(--card);font-size:14px;color:var(--muted);cursor:pointer}
 </style>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?33af3bd26d60e05d7b105ea100adb2ac";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 <body>
 
@@ -380,6 +389,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
         <div class="day-badge" id="main-day">DAY 1</div>
         <div class="day-sub" id="main-date"></div>
       </div>
+      <div class="header-status">
+        <div class="ring-wrap">
+          <svg width="56" height="56" viewBox="0 0 56 56">
+            <circle class="ring-bg" cx="28" cy="28" r="24"/>
+            <circle class="ring-fg" id="ring-fg" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
+          </svg>
+          <div class="ring-label">
+            <div class="ring-n" id="ring-n">0</div>
+            <div class="ring-d" id="ring-d">/ 0</div>
+          </div>
+        </div>
+        <div class="ring-text-col">
+          <div class="ring-title" id="ring-title">今日尚未开始</div>
+          <div class="ring-sub" id="ring-sub">点击各项挑战开始打卡</div>
+        </div>
+      </div>
     </div>
     <div class="prog-area">
       <div class="prog-meta">
@@ -393,23 +418,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
         <span class="prog-lbl">第50天</span>
       </div>
       <div class="motto" id="main-motto"></div>
-    </div>
-    <!-- 今日进度环 -->
-    <div class="today-ring-row">
-      <div class="ring-wrap">
-        <svg width="56" height="56" viewBox="0 0 56 56">
-          <circle class="ring-bg" cx="28" cy="28" r="24"/>
-          <circle class="ring-fg" id="ring-fg" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
-        </svg>
-        <div class="ring-label">
-          <div class="ring-n" id="ring-n">0</div>
-          <div class="ring-d" id="ring-d">/ 0</div>
-        </div>
-      </div>
-      <div class="ring-text-col">
-        <div class="ring-title" id="ring-title">今日尚未开始</div>
-        <div class="ring-sub" id="ring-sub">点击各项挑战开始打卡</div>
-      </div>
     </div>
     <!-- 失败预警横幅 -->
     <div class="warn-banner" id="warn-banner">
