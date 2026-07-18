@@ -84,7 +84,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 .home-header{padding:20px 20px 12px;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0}
 .day-badge{font-size:28px;font-weight:800;color:var(--pink);letter-spacing:-1px}
 .day-sub{font-size:11px;color:var(--muted);margin-top:2px}
-.fail-pill{background:#FFF;border:1.5px solid var(--border);border-radius:10px;padding:6px 12px;text-align:right;cursor:pointer}
 .fail-num{font-size:18px;font-weight:700;color:var(--red)}
 .fail-lbl{font-size:10px;color:var(--muted)}
 .prog-area{padding:0 20px 12px}
@@ -173,9 +172,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 /* ── CALENDAR TAB ── */
 #tab-cal{background:var(--bg);overflow-y:auto}
 .cal-inner{padding:16px}
-.fail-strip{display:flex;align-items:center;justify-content:space-between;background:#FEF2F2;border-radius:10px;padding:10px 14px;margin-bottom:12px;cursor:pointer}
-.fail-strip-txt{font-size:13px;color:var(--red);font-weight:600}
-.fail-strip-sub{font-size:11px;color:var(--red);opacity:0.7}
 .cal-month{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;text-align:center}
 .cal-wdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:8px}
 .cal-wd{font-size:11px;color:var(--muted);font-weight:600;padding:4px 0}
@@ -185,7 +181,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 .cal-d.today{border-color:var(--pink);color:var(--pink);font-weight:700}
 .cal-icon{font-size:13px;line-height:1}
 .cal-dn{font-size:10px;line-height:1}
-.cal-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.cal-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
 .st-card{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:14px;text-align:center}
 .st-num{font-size:26px;font-weight:800;color:var(--pink)}
 .st-lbl{font-size:11px;color:var(--muted);margin-top:4px}
@@ -384,10 +380,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
         <div class="day-badge" id="main-day">DAY 1</div>
         <div class="day-sub" id="main-date"></div>
       </div>
-      <div class="fail-pill" onclick="showFailInfo()">
-        <div class="fail-num" id="main-fail">0</div>
-        <div class="fail-lbl">未完成 / <span id="main-limit">30</span></div>
-      </div>
     </div>
     <div class="prog-area">
       <div class="prog-meta">
@@ -473,13 +465,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
       <div class="page-title">📅 挑战日历</div>
     </div>
     <div class="cal-inner">
-      <div class="fail-strip" onclick="showFailInfo()">
-        <div>
-          <div class="fail-strip-txt">💩 累计未完成 <span id="cal-fail-cnt">0</span> 次</div>
-          <div class="fail-strip-sub">点击查看详情</div>
-        </div>
-        <div style="font-size:20px">→</div>
-      </div>
       <div class="cal-month" id="cal-month"></div>
       <div class="cal-wdays">
         <div class="cal-wd">日</div><div class="cal-wd">一</div><div class="cal-wd">二</div>
@@ -489,6 +474,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
       <div class="cal-stats">
         <div class="st-card"><div class="st-num" id="stat-done">0</div><div class="st-lbl">🐕 完整完成天数</div></div>
         <div class="st-card"><div class="st-num" id="stat-streak">0</div><div class="st-lbl">🔥 当前连续天数</div></div>
+        <div class="st-card" style="cursor:pointer" onclick="showFailInfo()"><div class="st-num" style="color:var(--muted);font-size:22px" id="cal-fail-cnt">0</div><div class="st-lbl">💩 累计未完成</div></div>
       </div>
     </div>
   </div>
@@ -913,8 +899,7 @@ function initHome(){
   const now=new Date();
   document.getElementById('main-date').textContent=now.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'short'});
   const limits={easy:50,medium:30,hard:10};
-  document.getElementById('main-fail').textContent=state.totalFails;
-  document.getElementById('main-limit').textContent=limits[state.difficulty];
+  document.getElementById('main-limit')&&(document.getElementById('main-limit').textContent=limits[state.difficulty]);
   renderProgress(day);
   renderChallenges(); // 内部同时调用 renderTodayRing + renderWarnBanner
   // 激励语轮播（清除旧 timer 再重建）
@@ -1026,7 +1011,6 @@ function doCheckin(id){
   if(!state.dayData[today])state.dayData[today]={};
   state.dayData[today][id]='done';
   save();renderChallenges();renderProgress(getDayNum());
-  document.getElementById('main-fail').textContent=state.totalFails;
   toast('✅ 打卡成功！');
   checkAllDone(today);
   setTimeout(()=>saving=false,800);
@@ -1140,7 +1124,7 @@ function pollWake(){
   if(isWakeExpired(wh)&&(!td[ch.id]||td[ch.id]==='pending')){
     if(!state.dayData[today])state.dayData[today]={};
     state.dayData[today][ch.id]='fail';state.totalFails++;
-    save();renderChallenges();document.getElementById('main-fail').textContent=state.totalFails;
+    save();renderChallenges();
   }
 }
 
