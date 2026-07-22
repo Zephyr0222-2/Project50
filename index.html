@@ -177,8 +177,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans G
 .cal-wd{font-size:11px;color:var(--muted);font-weight:600;padding:4px 0}
 .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .cal-d{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;font-size:12px;color:var(--muted)}
-.cal-d.active{background:var(--card);border:1px solid var(--border);color:var(--text)}
+.cal-d.active{background:var(--card);border:1px solid var(--border);color:var(--text);cursor:pointer;transition:transform 0.12s}
+.cal-d.active:active{transform:scale(0.94)}
 .cal-d.today{border-color:var(--pink);color:var(--pink);font-weight:700}
+/* 日历：单日详情弹窗 */
+.day-modal-row{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text)}
+.day-modal-row:last-child{border-bottom:none}
+.day-modal-status{font-size:12px;font-weight:600;white-space:nowrap}
+.day-modal-status.done{color:#059669}
+.day-modal-status.fail{color:var(--red)}
+.day-modal-status.pending{color:var(--muted)}
+.day-modal-diary-btn{width:100%;padding:12px;border:1.5px solid var(--pink);border-radius:12px;background:var(--pink-light);color:var(--pink);font-size:13px;font-weight:600;cursor:pointer;margin-top:14px}
+.diary-entry-highlight{animation:diaryFlash 1.5s ease}
+@keyframes diaryFlash{0%{box-shadow:0 0 0 2px var(--pink)}100%{box-shadow:0 0 0 0 rgba(244,114,182,0)}}
 .cal-icon{font-size:13px;line-height:1}
 .cal-dn{font-size:10px;line-height:1}
 .cal-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
@@ -511,6 +522,16 @@ var _hmt = _hmt || [];
   </div>
 </div>
 
+<!-- 日历：单日详情弹窗 -->
+<div class="overlay hidden" id="day-modal" onclick="if(event.target===this)closeDayDetail()">
+  <div class="modal-box" style="text-align:left">
+    <div class="modal-title" id="day-modal-title" style="text-align:center"></div>
+    <div id="day-modal-list"></div>
+    <div id="day-modal-diary"></div>
+    <button class="modal-sec" style="margin-top:14px" onclick="closeDayDetail()">关闭</button>
+  </div>
+</div>
+
 <!-- 每日打卡分享卡片弹窗 -->
 <div class="overlay hidden" id="share-modal">
   <div class="modal-box" style="max-width:92vw;width:340px;padding:0;overflow:hidden">
@@ -584,6 +605,7 @@ let state={
   startDate:null,dayData:{},diaryData:{},totalFails:0,mottoIdx:0,
   lastTab:'home',       // 记住最后浏览的页面
   lastBackupTime:0,     // 最近自动备份时间戳
+  lastProcessedDate:null, // 已经结算过"未完成次数"的最后一天（用于跨天补算）
   version:STATE_VERSION // state 版本号，用于迁移
 };
 let timers={};          // 各挑战计时器对象
@@ -612,6 +634,7 @@ function migrateState(data){
   data.lastBackupTime = data.lastBackupTime ?? 0;
   data.mottoIdx   = data.mottoIdx   ?? 0;
   data.totalFails = data.totalFails ?? 0;
+  data.lastProcessedDate = data.lastProcessedDate ?? null;
   data.dayData    = data.dayData    ?? {};
   data.diaryData  = data.diaryData  ?? {};
   data.quizAnswers= data.quizAnswers?? [];
@@ -694,6 +717,8 @@ window.addEventListener('DOMContentLoaded',function(){
   // Safari / 安卓 后台切回时刷新主页数据（修复计时器暂停显示错误）
   document.addEventListener('visibilitychange',()=>{
     if(document.visibilityState==='visible'&&state.phase==='main'){
+      lastDate=getToday();
+      backfillMissedDays();
       const day=getDayNum();
       document.getElementById('main-day').textContent='DAY '+day;
       const now=new Date();
@@ -710,6 +735,8 @@ window.addEventListener('DOMContentLoaded',function(){
   // Safari 推荐的页面恢复事件（bfcache 返回时触发）
   window.addEventListener('pageshow',()=>{
     if(state.phase==='main'){
+      lastDate=getToday();
+      backfillMissedDays();
       const day=getDayNum();
       document.getElementById('main-day').textContent='DAY '+day;
       renderProgress(day);
@@ -883,6 +910,7 @@ function launchChallenge(){
   state.totalFails=0;
   state.dayData={};
   state.diaryData={};
+  state.lastProcessedDate=null;
   save();
   enterMainApp();
 }
@@ -902,6 +930,7 @@ function enterMainApp(){
 }
 
 function initHome(){
+  backfillMissedDays(); // 补算离线期间可能漏算的未完成天数
   const day=getDayNum();
   document.getElementById('main-day').textContent='DAY '+day;
   const now=new Date();
@@ -1131,19 +1160,22 @@ function pollWake(){
   const td=state.dayData[today]||{};
   if(isWakeExpired(wh)&&(!td[ch.id]||td[ch.id]==='pending')){
     if(!state.dayData[today])state.dayData[today]={};
-    state.dayData[today][ch.id]='fail';state.totalFails++;
+    // 仅标记该项为失败状态（UI 显示"时间已过"），不在此处累加计数。
+    // 累计未完成次数统一在当天结束（跨天）时由 markMissed() 一次性结算，
+    // 避免"早起失败"单独被记 1 次，而其它未完成项目却漏记。
+    state.dayData[today][ch.id]='fail';
     save();renderChallenges();
   }
 }
 
 function checkMidnight(){
-  // 每30秒检测是否跨天，跨天后自动标记未完成任务并刷新主页
+  // 每30秒检测是否跨天，跨天后自动结算未完成任务并刷新主页
   if(midnightTimer)clearInterval(midnightTimer);
   midnightTimer=setInterval(()=>{
     const today=getToday();
     if(today!==lastDate){
       lastDate=today;
-      markMissed();
+      backfillMissedDays();
       const day=getDayNum();
       document.getElementById('main-day').textContent='DAY '+day;
       const now=new Date();
@@ -1154,14 +1186,49 @@ function checkMidnight(){
   },30000);
 }
 
-function markMissed(){
-  // 将昨天未完成的挑战标记为 fail，累计总失败次数
-  const today=getToday();
+function addDays(dateStr,n){
+  const d=new Date(dateStr+'T00:00:00');
+  d.setDate(d.getDate()+n);
+  return d.toISOString().split('T')[0];
+}
+
+// 计算某一天有多少个挑战项目"未完成"（done 以外都算未完成，包括已经是 fail 或压根没打卡的）
+function calculateDailyMissed(date){
   const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
-  if(!state.dayData[today])state.dayData[today]={};
-  const td=state.dayData[today];let missed=0;
-  active.forEach(c=>{if(!td[c.id]||td[c.id]==='pending'){td[c.id]='fail';missed++;}});
-  if(missed>0){state.totalFails+=missed;save();}
+  const td=state.dayData[date]||{};
+  let missed=0;
+  active.forEach(c=>{if(td[c.id]!=='done')missed++;});
+  return missed;
+}
+
+// 结算某一天：把当天所有未完成项目标记为 fail，并把"未完成的项目数"计入累计未完成次数。
+// 每天只会被结算一次（用 __tallied 标记防止重复计数）。
+function markMissed(date){
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  if(!state.dayData[date])state.dayData[date]={};
+  const td=state.dayData[date];
+  if(td.__tallied)return; // 已经结算过，跳过，防止重复累加
+  const missed=calculateDailyMissed(date);
+  active.forEach(c=>{if(td[c.id]!=='done')td[c.id]='fail';});
+  td.__tallied=true;
+  if(missed>0)state.totalFails+=missed;
+  save();
+}
+
+// 补算：从"上次结算日"的次日一直结算到"昨天"，覆盖应用被关闭多天再打开的情况。
+// 这样无论用户是每天打开，还是隔了好几天才回来，未完成次数都会被正确、且只被计算一次。
+function backfillMissedDays(){
+  if(state.phase!=='main'||!state.startDate)return;
+  const today=getToday();
+  let cursor=state.lastProcessedDate?addDays(state.lastProcessedDate,1):state.startDate;
+  let guard=0; // 安全上限，防止极端情况下死循环
+  while(cursor<today&&guard<400){
+    markMissed(cursor);
+    cursor=addDays(cursor,1);
+    guard++;
+  }
+  state.lastProcessedDate=addDays(today,-1);
+  save();
 }
 
 // =====================================================
@@ -1210,7 +1277,7 @@ function renderDiaryTab(){
       const text=(entry.text||entry).toString().replace(/</g,'&lt;');
       const imgs=entry.images&&entry.images.length
         ?`<div class="diary-imgs">${entry.images.map(src=>`<img class="diary-img" src="${src}" onclick="openLightbox('${src}')" loading="lazy">`).join('')}</div>`:'';
-      return`<div class="diary-entry">
+      return`<div class="diary-entry" id="diary-entry-${date}">
         <div class="diary-date">${new Date(date+'T00:00:00').toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'short'})} · DAY ${getDayOf(date)}</div>
         <div class="diary-text">${text}</div>${imgs}
       </div>`;
@@ -1314,10 +1381,18 @@ function renderCalTab(){
     const isToday=d===now.getDate();
     const data=state.dayData[ds];
     let icon='';
-    if(data){const done=active.filter(c=>data[c.id]==='done').length;icon=done===active.length?'🐕':'💩';}
+    const isFuture=ds>getToday();
+    const beforeStart=state.startDate?ds<state.startDate:true;
+    if(!isFuture&&!beforeStart&&active.length>0){
+      // 不再要求 dayData[ds] 必须存在——哪怕这一天一项都没打卡（data 为 undefined），
+      // 也要按"完成 0 项"计算，只要没有全部完成就显示 💩，而不是什么都不显示。
+      const done=data?active.filter(c=>data[c.id]==='done').length:0;
+      icon=done===active.length?'🐕':'💩';
+    }
     const el=document.createElement('div');
     el.className='cal-d active'+(isToday?' today':'');
     el.innerHTML=`<div class="cal-icon">${icon}</div><div class="cal-dn">${d}</div>`;
+    el.onclick=()=>showDayDetail(ds);
     container.appendChild(el);
   }
   document.getElementById('cal-fail-cnt').textContent=state.totalFails;
@@ -1332,6 +1407,60 @@ function renderCalTab(){
   }
   document.getElementById('stat-done').textContent=complete;
   document.getElementById('stat-streak').textContent=streak;
+}
+
+// 点击日历上的某一天，弹出这一天的打卡完成情况
+function showDayDetail(date){
+  const active=CHALLENGES_DEF.filter(c=>state.challenges[c.id]!==undefined);
+  const today=getToday();
+  const titleEl=document.getElementById('day-modal-title');
+  const dObj=new Date(date+'T00:00:00');
+  const dateTxt=dObj.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'short'});
+  titleEl.textContent=state.startDate?`${dateTxt} · DAY ${getDayOf(date)}`:dateTxt;
+
+  const listEl=document.getElementById('day-modal-list');
+  if(date>today){
+    listEl.innerHTML='<div style="text-align:center;color:var(--muted);font-size:13px;padding:16px 0">还没到这一天，加油打卡吧～</div>';
+  } else if(state.startDate&&date<state.startDate){
+    listEl.innerHTML='<div style="text-align:center;color:var(--muted);font-size:13px;padding:16px 0">挑战开始前，没有记录</div>';
+  } else {
+    const td=state.dayData[date]||{};
+    listEl.innerHTML=active.map(c=>{
+      const raw=td[c.id]||'pending';
+      const isTodayPending=date===today&&raw==='pending';
+      const icon=raw==='done'?'✅':isTodayPending?'⏳':'❌';
+      const label=raw==='done'?'已完成':isTodayPending?'待完成':'未完成';
+      const cls=raw==='done'?'done':isTodayPending?'pending':'fail';
+      const shortName=c.name.replace(/^挑战[一二三四五六七]：/,'');
+      return `<div class="day-modal-row"><span>${shortName}</span><span class="day-modal-status ${cls}">${icon} ${label}</span></div>`;
+    }).join('');
+  }
+
+  const diaryBox=document.getElementById('day-modal-diary');
+  const entry=state.diaryData[date];
+  diaryBox.innerHTML=entry
+    ?`<button class="day-modal-diary-btn" onclick="jumpToDiaryEntry('${date}')">✍️ 查看这天的日记</button>`
+    :'';
+
+  document.getElementById('day-modal').classList.remove('hidden');
+}
+
+function closeDayDetail(){
+  document.getElementById('day-modal').classList.add('hidden');
+}
+
+// 从日历弹窗跳转到日记页，并定位到那一天的日记条目
+function jumpToDiaryEntry(date){
+  closeDayDetail();
+  switchTab('diary');
+  setTimeout(()=>{
+    const el=document.getElementById('diary-entry-'+date);
+    if(el){
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      el.classList.add('diary-entry-highlight');
+      setTimeout(()=>el.classList.remove('diary-entry-highlight'),1600);
+    }
+  },80);
 }
 
 // =====================================================
@@ -1791,7 +1920,7 @@ function roundRect(ctx,x,y,w,h,r){
 function celebrateToHome(){
   state.phase='quiz';state.startDate=null;state.quizAnswers=[];
   state.challenges={};state.dayData={};state.diaryData={};
-  state.totalFails=0;state.lastBackupTime=0;state.version=STATE_VERSION;
+  state.totalFails=0;state.lastBackupTime=0;state.lastProcessedDate=null;state.version=STATE_VERSION;
   save();
   document.getElementById('main-app').classList.add('hidden');
   document.getElementById('main-app').style.display='none';
@@ -1818,7 +1947,7 @@ function doReset(){
   ['p50_data','p50_data_bak','p50_v5','p50_v4','p50_v3','p50_v2','p50'].forEach(k=>localStorage.removeItem(k));
   state={phase:'quiz',quizAnswers:[],challenges:{},difficulty:'medium',startDate:null,
     dayData:{},diaryData:{},totalFails:0,mottoIdx:0,
-    lastTab:'home',lastBackupTime:0,version:STATE_VERSION
+    lastTab:'home',lastBackupTime:0,lastProcessedDate:null,version:STATE_VERSION
   };
   timers={};pendingImgs=[];quizCur=0;
   if(mottoTimer)clearInterval(mottoTimer);
