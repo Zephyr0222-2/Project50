@@ -777,7 +777,20 @@ window.addEventListener('DOMContentLoaded',function(){
 // Purpose: 通用工具函数（日期、格式化、toast、screen切换）
 // =====================================================
 
-function getToday(){return new Date().toISOString().split('T')[0]}
+// ── 统一日期工具（Date Service）──
+// 所有"今天是几号"的逻辑必须走这里，禁止在别处直接用 new Date().toISOString()。
+// toISOString() 返回的是 UTC 时间，会导致北京时间凌晨（UTC 前一天）时
+// 日历显示的日期和日记/打卡实际存储的日期差一天。这里统一用本地时间的
+// 年/月/日拼出日期字符串，避免时区错位。
+function getLocalDate(base){
+  const now=base||new Date();
+  return {year:now.getFullYear(),month:now.getMonth()+1,day:now.getDate()};
+}
+function formatDate(date){
+  const d=date||getLocalDate();
+  return `${d.year}-${String(d.month).padStart(2,'0')}-${String(d.day).padStart(2,'0')}`;
+}
+function getToday(){return formatDate(getLocalDate())}
 
 function getDayNum(){
   if(!state.startDate)return 1;
@@ -1189,7 +1202,7 @@ function checkMidnight(){
 function addDays(dateStr,n){
   const d=new Date(dateStr+'T00:00:00');
   d.setDate(d.getDate()+n);
-  return d.toISOString().split('T')[0];
+  return formatDate(getLocalDate(d));
 }
 
 // 计算某一天有多少个挑战项目"未完成"（done 以外都算未完成，包括已经是 fail 或压根没打卡的）
@@ -1401,7 +1414,7 @@ function renderCalTab(){
   Object.values(state.dayData).forEach(d=>{if(active.every(c=>d[c.id]==='done'))complete++;});
   for(let i=0;i<50;i++){
     const d=new Date(now);d.setDate(now.getDate()-i);
-    const ds=d.toISOString().split('T')[0];
+    const ds=formatDate(getLocalDate(d));
     const dd=state.dayData[ds];
     if(dd&&active.every(c=>dd[c.id]==='done'))streak++;else break;
   }
